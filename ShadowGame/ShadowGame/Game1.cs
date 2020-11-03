@@ -33,7 +33,7 @@ namespace ShadowGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            texture = Content.Load<Texture2D>("ShadowRunning Fixed");
+            texture = Content.Load<Texture2D>("ShadowRunningFixed");
 
             InitializeGameObject();
             // TODO: use this.Content to load your game content here

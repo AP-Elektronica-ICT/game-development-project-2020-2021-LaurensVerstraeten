@@ -37,3 +37,4 @@ C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGamePro
 C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGameProject\game-development-project-2020-2021-LaurensVerstraeten\ShadowGame\ShadowGame\bin\Debug\netcoreapp3.1\Content\Mobile - Shadow Shoot - Shadow the Hedgehog.xnb
 C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGameProject\game-development-project-2020-2021-LaurensVerstraeten\ShadowGame\ShadowGame\bin\Debug\netcoreapp3.1\Content\ShadowSpriteClear.xnb
 C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGameProject\game-development-project-2020-2021-LaurensVerstraeten\ShadowGame\ShadowGame\bin\Debug\netcoreapp3.1\Content\ShadowRunning Fixed.xnb
+C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGameProject\game-development-project-2020-2021-LaurensVerstraeten\ShadowGame\ShadowGame\bin\Debug\netcoreapp3.1\Content\ShadowRunningFixed.xnb
