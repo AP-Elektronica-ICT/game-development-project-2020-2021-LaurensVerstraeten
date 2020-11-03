@@ -9,6 +9,9 @@ namespace ShadowGame
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Texture2D texture;
+
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -27,6 +30,8 @@ namespace ShadowGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            texture = Content.Load<Texture2D>("ShadowSpriteClear");
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -42,9 +47,17 @@ namespace ShadowGame
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.BurlyWood);
 
             // TODO: Add your drawing code here
+
+            _spriteBatch.Begin();
+
+            // TODO: Add sprites
+
+            _spriteBatch.Draw(texture, new Vector2(10,10), Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
