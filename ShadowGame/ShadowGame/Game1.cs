@@ -10,6 +10,7 @@ namespace ShadowGame
         private SpriteBatch _spriteBatch;
 
         private Texture2D texture;
+        private Rectangle deelRectangle;
 
 
         public Game1()
@@ -23,6 +24,8 @@ namespace ShadowGame
         {
             // TODO: Add your initialization logic here
 
+            deelRectangle = new Rectangle(0, 0, 42, 37);
+
             base.Initialize();
         }
 
@@ -30,7 +33,7 @@ namespace ShadowGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            texture = Content.Load<Texture2D>("ShadowSpriteClear");
+            texture = Content.Load<Texture2D>("ShadowRunning");
 
             // TODO: use this.Content to load your game content here
         }
@@ -55,7 +58,7 @@ namespace ShadowGame
 
             // TODO: Add sprites
 
-            _spriteBatch.Draw(texture, new Vector2(10,10), Color.White);
+            _spriteBatch.Draw(texture, new Vector2(10,10), deelRectangle, Color.White);
 
             _spriteBatch.End();
 
