@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
@@ -13,6 +14,8 @@ namespace ShadowGame.Animation
 
         private int counter;
 
+        private double frameMovement = 0;
+
         public Animatie()
         {
             frames = new List<AnimationFrame>();
@@ -24,10 +27,17 @@ namespace ShadowGame.Animation
             currentFrame = frames[0];
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             currentFrame = frames[counter];
-            counter++;
+
+            frameMovement += currentFrame.SourceRectangle.Width* gameTime.ElapsedGameTime.TotalSeconds;
+            if (frameMovement >= currentFrame.SourceRectangle.Width/10)
+            {
+                counter++;
+                frameMovement = 0;
+            }
+
             if (counter >= frames.Count)
             {
                 counter = 0;

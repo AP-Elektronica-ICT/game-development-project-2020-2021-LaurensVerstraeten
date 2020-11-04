@@ -50,7 +50,7 @@ namespace ShadowGame
                 Exit();
 
             // TODO: Add your update logic here
-            shadow.Update();
+            shadow.Update(gameTime);
             base.Update(gameTime);
         }
 
