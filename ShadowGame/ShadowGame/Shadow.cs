@@ -53,6 +53,7 @@ namespace ShadowGame
         {
             positie += snelheid;
             snelheid += versnelling;
+            snelheid = Limit(snelheid, 5);
 
             if (positie.X > 675 || positie.X < 0)
             {
