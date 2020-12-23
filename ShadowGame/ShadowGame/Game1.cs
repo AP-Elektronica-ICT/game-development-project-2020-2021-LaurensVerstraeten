@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ShadowGame.Input;
 using System;
 
 namespace ShadowGame
@@ -41,7 +42,7 @@ namespace ShadowGame
 
         private void InitializeGameObject()
         {
-            shadow = new Shadow(texture);
+            shadow = new Shadow(texture, new KeyBoardReader());
         }
 
         protected override void Update(GameTime gameTime)

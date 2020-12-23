@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ShadowGame.Animation;
+using ShadowGame.Input;
 using ShadowGame.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,9 @@ namespace ShadowGame
         private Vector2 snelheid;
         private Vector2 versnelling;
         private Vector2 mouseVector;
+        IInputReader inputReader;
      
-        public Shadow(Texture2D texture)
+        public Shadow(Texture2D texture, IInputReader reader)
         {
             shadowTexture = texture;
             animatie = new Animatie();
@@ -31,23 +33,18 @@ namespace ShadowGame
             snelheid = new Vector2(1, 1); //10 lijkt een goede snelheid voor sprite
             versnelling = new Vector2(0.1f, 0.1f);
 
-            /*
-            animatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 126, 111)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(126, 0, 126, 111)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(252, 0, 126, 111)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(378, 0, 126, 111)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(504, 0, 126, 111)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(630, 0, 126, 111)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(756, 0, 126, 111)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(882, 0, 126, 111)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(1.008, 0, 126, 111)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(1.134, 0, 126, 111)));
-            */
+            //Read input for my shaddow class
+            this.inputReader = reader;
+
         }
 
         public void Update(GameTime gameTime)
         {
-            Move(GetMouseState());
+            var direction = inputReader.ReadInput();
+            direction *= 4;
+            positie += direction;
+
+            //Move(GetMouseState());
             animatie.Update(gameTime);
         }
 
