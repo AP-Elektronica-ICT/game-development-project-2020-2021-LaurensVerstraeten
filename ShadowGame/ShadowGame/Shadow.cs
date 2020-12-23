@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using ShadowGame.Animation;
 using ShadowGame.Interfaces;
 using System;
@@ -15,6 +16,7 @@ namespace ShadowGame
         private Vector2 positie;
         private Vector2 snelheid;
         private Vector2 versnelling;
+        private Vector2 mouseVector;
      
         public Shadow(Texture2D texture)
         {
@@ -45,15 +47,26 @@ namespace ShadowGame
 
         public void Update(GameTime gameTime)
         {
-            Move();
+            Move(GetMouseState());
             animatie.Update(gameTime);
         }
 
-        private void Move() 
+        private Vector2 GetMouseState()
         {
-            positie += snelheid;
-            snelheid += versnelling;
+            MouseState state = Mouse.GetState();
+            mouseVector = new Vector2(state.X, state.Y);
+            return mouseVector;
+        }
+
+        private void Move(Vector2 mouse) 
+        {
+            var direction = Vector2.Add(mouse, -positie);
+            direction.Normalize();
+            direction = Vector2.Multiply(direction, 0.5f);
+
+            snelheid += direction;
             snelheid = Limit(snelheid, 5);
+            positie += snelheid;
 
             if (positie.X > 675 || positie.X < 0)
             {
