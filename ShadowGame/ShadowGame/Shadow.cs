@@ -36,7 +36,7 @@ namespace ShadowGame
             walkLeft = new LeftAnimation(texture, this);
             currentAnimation = walkRight;
 
-            //Read input for my shaddow class
+            //Read input for my shadow class
             this.inputReader = reader;
 
             moveCommand = new MoveCommand();

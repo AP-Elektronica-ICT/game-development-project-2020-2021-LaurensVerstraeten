@@ -11,8 +11,8 @@ namespace ShadowGame.Command
     class MoveCommand : IGameCommand
     {
         private CollisionManager colMan;
-        private Rectangle colBox;
-        private Rectangle obstacle;
+        public Rectangle colBox;
+        public Rectangle obstacle;
         public Vector2 speed;
 
         public MoveCommand()
