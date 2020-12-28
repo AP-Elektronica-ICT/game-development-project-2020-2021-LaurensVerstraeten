@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShadowGame.Animation.ShadowAnimation
 {
-    class MoveLeft
+    class MoveLeft : IMover
     {
     }
 }
