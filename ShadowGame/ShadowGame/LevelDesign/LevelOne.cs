@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ShadowGame.World;
+using ShadowGame.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ShadowGame.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,18 +11,21 @@ namespace ShadowGame.World
     {
         public Texture2D _texture { get; set; }
         public Vector2 positie { get; set; }
-        public Rectangle CollisionRectangle { get; set; }
+        public Rectangle CollisionRectangleBlock { get; set; }
+        private IGameCommand moveCommand;
 
         public Block(Texture2D texture, Vector2 pos)
         {
             _texture = texture;
             positie = pos;
-            CollisionRectangle = new Rectangle((int)positie.X, (int)positie.Y, 30, 30);
+            CollisionRectangleBlock = new Rectangle((int)positie.X, (int)positie.Y, 30, 30);
+            moveCommand = new MoveCommand();
+            moveCommand.GiveRectangleObstacle(CollisionRectangleBlock);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, CollisionRectangle, Color.AliceBlue);
+            spriteBatch.Draw(_texture, CollisionRectangleBlock, Color.AliceBlue);
         }
     }
 }

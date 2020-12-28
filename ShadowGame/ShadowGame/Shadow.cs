@@ -3,9 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ShadowGame.Animation;
 using ShadowGame.Animation.ShadowAnimation;
+using ShadowGame.Collision;
 using ShadowGame.Command;
 using ShadowGame.Input;
 using ShadowGame.Interfaces;
+using ShadowGame.World;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -49,15 +51,15 @@ namespace ShadowGame
         {
             var direction = inputReader.ReadInput();
 
-            MoveHorizontal(direction);
-
+            Move(direction);
+            moveCommand.GiveRectangleColBox(_collisionRectangle);
             currentAnimation.update(gameTime);
-
+            
             _collisionRectangle.X = (int)Position.X;
-            CollisionRectangle = _collisionRectangle;
+            _collisionRectangle.Y = (int)Position.Y;            
         }
 
-        private void MoveHorizontal(Vector2 _direction)
+        private void Move(Vector2 _direction)
         {
             if (_direction.X == 1)
             {

@@ -18,7 +18,6 @@ namespace ShadowGame
         private Texture2D texture;
         Shadow shadow;
         LevelOne level;
-        CollisionManager collisionManager;
 
         public Game1()
         {
@@ -31,7 +30,6 @@ namespace ShadowGame
         {
             // TODO: Add your initialization logic here
             level = new LevelOne(Content);
-            collisionManager = new CollisionManager();
             level.CreateWorld();
             
 
