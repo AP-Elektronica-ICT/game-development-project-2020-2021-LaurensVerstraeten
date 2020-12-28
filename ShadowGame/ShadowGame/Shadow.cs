@@ -32,8 +32,8 @@ namespace ShadowGame
         {
             
             shadowTexture = texture;
-            walkRight = new MoveRightAnimation(texture, this);
-            walkLeft = new MoveLeftAnimation(texture, this);
+            walkRight = new RightAnimation(texture, this);
+            walkLeft = new LeftAnimation(texture, this);
             currentAnimation = walkRight;
 
             //positie = new Vector2(10, 10);

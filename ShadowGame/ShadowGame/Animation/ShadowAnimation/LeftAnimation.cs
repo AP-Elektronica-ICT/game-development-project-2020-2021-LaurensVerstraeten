@@ -7,14 +7,14 @@ using System.Text;
 
 namespace ShadowGame.Animation.ShadowAnimation
 {
-    class MoveLeftAnimation : IAnimation
+    class LeftAnimation : IAnimation
     {
         private Animatie _animatie;
         public Texture2D texture;
         public ITransform transform;
         public Animatie animatie { get { return _animatie; } set { _animatie = value; } }
 
-        public MoveLeftAnimation(Texture2D texture, ITransform transform)
+        public LeftAnimation(Texture2D texture, ITransform transform)
         {
             this.transform = transform;
             this.texture = texture;
