@@ -15,10 +15,8 @@ namespace ShadowGame
     public class Shadow : IGameObject, ITransform
     {
         private Texture2D shadowTexture;
-        private Animatie animatie;
         private Vector2 snelheid;
         private Vector2 versnelling;
-        private Vector2 mouseVector;
         public Vector2 Position { get; set; }
 
         IInputReader inputReader;

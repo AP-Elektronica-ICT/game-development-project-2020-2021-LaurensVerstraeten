@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ShadowGame.Input;
+using ShadowGame.LevelDesign;
 using System;
 
 namespace ShadowGame
@@ -13,6 +14,7 @@ namespace ShadowGame
 
         private Texture2D texture;
         Shadow shadow;
+        LevelOne level;
 
         public Game1()
         {
@@ -24,7 +26,8 @@ namespace ShadowGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            level = new LevelOne(Content);
+            level.CreateWorld();
             
 
             base.Initialize();
@@ -64,6 +67,7 @@ namespace ShadowGame
             _spriteBatch.Begin();
 
             // TODO: Add sprites
+            level.DrawWorld(_spriteBatch);
             shadow.Draw(_spriteBatch);
             
 
