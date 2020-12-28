@@ -10,17 +10,24 @@ namespace ShadowGame.LevelDesign
 {
     class LevelOne
     {
+        //platform classe maken, rectangle maken (verschillende platformen) met eigen draw functie
+        //platformen zijn een array van tiles
+        //in level heb je een list/array van uw platforms en hier roep je uw array aan om te draw
+        //array roept rectangles aan
         public Texture2D texture;
 
         public byte[,] levelArray = new byte[,]
         {
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {1,0,1,0,1,0},
-            {0,1,0,1,0,1},
+            {0,0,0,1},
+            {1,0,0,1},
+            {0,0,0,1},
+            {0,0,0,1},
+            {0,0,0,1},
+            {0,0,0,1},
         };
 
-        private Block[,] blockArray = new Block[4, 6];
+        private Block[,] blockArray = new Block[6, 4];
+        //private Block[,]  = new Block[3, 1];
 
         private ContentManager Content;
 
@@ -37,13 +44,13 @@ namespace ShadowGame.LevelDesign
 
         public void CreateWorld()
         {
-            for (int x = 0; x < 4; x++)
+            for (int x = 0; x < 6; x++)
             {
-                for (int y = 0; y < 6; y++)
+                for (int y = 0; y < 4; y++)
                 {
                     if (levelArray[x, y] == 1)
                     {
-                        blockArray[x, y] = new Block(texture, new Vector2(x + 30 , y + 30));
+                        blockArray[x, y] = new Block(texture, new Vector2(x * 30 , y * 30 ));
                     }
                 }
 
@@ -52,9 +59,9 @@ namespace ShadowGame.LevelDesign
 
         public void DrawWorld(SpriteBatch spriteBatch)
         {
-            for (int x = 0; x < 4; x++)
+            for (int x = 0; x < 6; x++)
             {
-                for (int y = 0; y < 6; y++)
+                for (int y = 0; y < 4; y++)
                 {
                     if (blockArray[x, y] != null)
                     {

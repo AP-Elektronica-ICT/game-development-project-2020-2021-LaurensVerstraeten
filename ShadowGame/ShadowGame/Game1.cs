@@ -1,9 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ShadowGame.Collision;
 using ShadowGame.Input;
 using ShadowGame.LevelDesign;
+using ShadowGame.World;
 using System;
+using System.Diagnostics;
 
 namespace ShadowGame
 {
@@ -15,6 +18,7 @@ namespace ShadowGame
         private Texture2D texture;
         Shadow shadow;
         LevelOne level;
+        CollisionManager collisionManager;
 
         public Game1()
         {
@@ -27,6 +31,7 @@ namespace ShadowGame
         {
             // TODO: Add your initialization logic here
             level = new LevelOne(Content);
+            collisionManager = new CollisionManager();
             level.CreateWorld();
             
 
@@ -55,6 +60,7 @@ namespace ShadowGame
 
             // TODO: Add your update logic here
             shadow.Update(gameTime);
+
             base.Update(gameTime);
         }
 
