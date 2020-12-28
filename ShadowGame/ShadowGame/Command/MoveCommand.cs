@@ -11,7 +11,7 @@ namespace ShadowGame.Command
         public Vector2 speed;
         public MoveCommand()
         {
-            this.speed = new Vector2(5, 0);
+            this.speed = new Vector2(10, 0);
         }
         public void Execute(ITransform transform, Vector2 direction)
         {

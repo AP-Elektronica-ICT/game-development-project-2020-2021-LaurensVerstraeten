@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ShadowGame.Animation;
+using ShadowGame.Animation.ShadowAnimation;
 using ShadowGame.Command;
 using ShadowGame.Input;
 using ShadowGame.Interfaces;
@@ -21,26 +22,19 @@ namespace ShadowGame
         public Vector2 Position { get; set; }
 
         IInputReader inputReader;
+        IAnimation walkRight;
+        IAnimation walkLeft;
+        IAnimation currentAnimation;
 
         private IGameCommand moveCommand;
 
-       
-
         public Shadow(Texture2D texture, IInputReader reader)
         {
-            /*
+            
             shadowTexture = texture;
-            walkRight = new MoveRight(texture, this);
-            walkLeft = new MoveLeft(texture, this);
+            walkRight = new MoveRightAnimation(texture, this);
+            walkLeft = new MoveLeftAnimation(texture, this);
             currentAnimation = walkRight;
-            */
-
-            shadowTexture = texture;
-            animatie = new Animatie();
-            for (int i = 0; i < 1260; i += 126)
-            {
-                animatie.AddFrame(new AnimationFrame(new Rectangle(i, 0, 126, 111)));
-            }
 
             //positie = new Vector2(10, 10);
             snelheid = new Vector2(1, 1); //10 lijkt een goede snelheid voor sprite
@@ -58,45 +52,21 @@ namespace ShadowGame
             var direction = inputReader.ReadInput();
 
             MoveHorizontal(direction);
-            //direction *= 4;
-            //positie += direction;
 
-            //Move(GetMouseState());
-            animatie.Update(gameTime);
+            currentAnimation.update(gameTime);
         }
 
         private void MoveHorizontal(Vector2 _direction)
         {
-            moveCommand.Execute(this, _direction);
-        }
-
-        private Vector2 GetMouseState()
-        {
-            MouseState state = Mouse.GetState();
-            mouseVector = new Vector2(state.X, state.Y);
-            return mouseVector;
-        }
-
-        private void Move(Vector2 mouse) 
-        {
-            /*var direction = Vector2.Add(mouse, -positie);
-            direction.Normalize();
-            direction = Vector2.Multiply(direction, 0.5f);
-
-            snelheid += direction;
-            snelheid = Limit(snelheid, 5);
-            positie += snelheid;
-
-            if (positie.X > 675 || positie.X < 0)
+            if (_direction.X == 1)
             {
-                snelheid.X *= -1;
-                versnelling.X *= -1;
+                currentAnimation = walkRight;
             }
-            if (positie.Y > 375 || positie.Y < 0 )
+            if (_direction.X == -1)
             {
-                snelheid.Y *= -1;
-                versnelling.Y *= -1;
-            }*/
+                currentAnimation = walkLeft;
+            }
+            moveCommand.Execute(this, _direction);
         }
 
         private Vector2 Limit(Vector2 v, float max)
@@ -112,7 +82,7 @@ namespace ShadowGame
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(shadowTexture, Position, animatie.currentFrame.SourceRectangle, Color.White);
+            currentAnimation.draw(spriteBatch);
         }
 
 
