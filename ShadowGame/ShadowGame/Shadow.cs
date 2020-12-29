@@ -18,6 +18,7 @@ namespace ShadowGame
     public class Shadow : IGameObject, ITransform
     {
         private Texture2D shadowTexture;
+        private string directionBefore;
         public Vector2 Position { get; set; }
         //public Rectangle CollisionRectangle { get; set; }
         private Rectangle Hitbox;
@@ -26,7 +27,8 @@ namespace ShadowGame
         IInputReader inputReader;
         IAnimation walkRight;
         IAnimation walkLeft;
-        IAnimation idle;
+        IAnimation leftIdle;
+        IAnimation rightIdle;
         IAnimation currentAnimation;
 
         //private IGameCommand moveCommand;
@@ -37,8 +39,9 @@ namespace ShadowGame
             shadowTexture = texture;
             walkRight = new RightAnimation(texture, this);
             walkLeft = new LeftAnimation(texture, this);
-            //idle = new IdleAnimation();
-            currentAnimation = walkRight;
+            leftIdle = new LeftIdleAnimation(texture, this);
+            rightIdle = new RightIdleAnimation(texture, this);
+            currentAnimation = rightIdle;
 
             //Read input for my shadow class
             this.inputReader = reader;
@@ -71,15 +74,24 @@ namespace ShadowGame
             {
                 currentAnimation = walkRight;
                 FutureHitbox.X = (int)Position.X + 1;
+                directionBefore = "right";
             }
             if (_direction.X == -1)
             {
                 currentAnimation = walkLeft;
                 FutureHitbox.X = (int)Position.X - 1;
+                directionBefore = "left";
             }
             if (_direction.X == 0)
             {
-                //FutureHitbox.X = 0;
+                if (directionBefore == "right")
+                {
+                    currentAnimation = rightIdle;
+                }
+                if (directionBefore == "left")
+                {
+                    currentAnimation = leftIdle;
+                }
             }
             //moveCommand.Execute(this, _direction);
             Global.moveCommand.Execute(this, _direction, FutureHitbox);
