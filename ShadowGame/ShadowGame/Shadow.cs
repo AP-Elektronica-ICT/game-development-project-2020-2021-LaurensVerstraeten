@@ -18,15 +18,15 @@ namespace ShadowGame
     {
         private Texture2D shadowTexture;
         public Vector2 Position { get; set; }
-        public Rectangle CollisionRectangle { get; set; }
-        private Rectangle _collisionRectangle;
+        //public Rectangle CollisionRectangle { get; set; }
+        private Rectangle Hitbox;
 
         IInputReader inputReader;
         IAnimation walkRight;
         IAnimation walkLeft;
         IAnimation currentAnimation;
 
-        private IGameCommand moveCommand;
+        //private IGameCommand moveCommand;
 
         public Shadow(Texture2D texture, IInputReader reader)
         {
@@ -39,11 +39,11 @@ namespace ShadowGame
             //Read input for my shadow class
             this.inputReader = reader;
 
-            moveCommand = new MoveCommand();
+            //moveCommand = new MoveCommand();
 
             Position = new Vector2(0, 0);
 
-            _collisionRectangle = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
 
         }
 
@@ -52,11 +52,11 @@ namespace ShadowGame
             var direction = inputReader.ReadInput();
 
             Move(direction);
-            moveCommand.GiveRectangleColBox(_collisionRectangle);
+            Global.moveCommand.GiveRectangleColBox(Hitbox);
             currentAnimation.update(gameTime);
             
-            _collisionRectangle.X = (int)Position.X;
-            _collisionRectangle.Y = (int)Position.Y;            
+            Hitbox.X = (int)Position.X;
+            Hitbox.Y = (int)Position.Y;            
         }
 
         private void Move(Vector2 _direction)
@@ -69,7 +69,8 @@ namespace ShadowGame
             {
                 currentAnimation = walkLeft;
             }
-            moveCommand.Execute(this, _direction);
+            //moveCommand.Execute(this, _direction);
+            Global.moveCommand.Execute(this, _direction);
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -17,6 +17,7 @@ namespace ShadowGame
 
         private Texture2D texture;
         Shadow shadow;
+        Global global;
         LevelOne level;
 
         public Game1()
@@ -58,7 +59,7 @@ namespace ShadowGame
 
             // TODO: Add your update logic here
             shadow.Update(gameTime);
-
+            //List clearen
             base.Update(gameTime);
         }
 

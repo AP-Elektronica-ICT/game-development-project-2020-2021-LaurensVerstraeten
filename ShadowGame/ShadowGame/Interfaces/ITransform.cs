@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShadowGame.Interfaces
 {
-    interface ITransform
+    public interface ITransform
     {
         Vector2 Position { get; set; }
     }

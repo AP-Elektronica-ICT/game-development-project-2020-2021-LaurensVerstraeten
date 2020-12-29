@@ -12,15 +12,15 @@ namespace ShadowGame.World
         public Texture2D _texture { get; set; }
         public Vector2 positie { get; set; }
         public Rectangle CollisionRectangleBlock { get; set; }
-        private IGameCommand moveCommand;
+        //private IGameCommand moveCommand;
 
         public Block(Texture2D texture, Vector2 pos)
         {
             _texture = texture;
             positie = pos;
             CollisionRectangleBlock = new Rectangle((int)positie.X, (int)positie.Y, 30, 30);
-            moveCommand = new MoveCommand();
-            moveCommand.GiveRectangleObstacle(CollisionRectangleBlock);
+            //moveCommand = new MoveCommand();
+            Global.moveCommand.GiveRectangleObstacle(CollisionRectangleBlock);
         }
 
         public void Draw(SpriteBatch spriteBatch)

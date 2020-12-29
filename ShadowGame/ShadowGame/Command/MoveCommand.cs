@@ -8,34 +8,37 @@ using System.Text;
 
 namespace ShadowGame.Command
 {
-    class MoveCommand : IGameCommand
+    public class MoveCommand : IGameCommand
     {
-        private CollisionManager colMan;
-        public Rectangle colBox;
-        public Rectangle obstacle;
+        public Rectangle colBox {get; set; }
+        public List<Rectangle> obstacleList { get; set; } = new List<Rectangle>();
         public Vector2 speed;
 
         public MoveCommand()
         {
-            colMan = new CollisionManager();
-            this.speed = new Vector2(5, 0);
+            speed = new Vector2(5, 0);
         }
 
-        public void GiveRectangleColBox(Rectangle _colbox)
+        public  void GiveRectangleColBox(Rectangle _colbox)
         {
             colBox = _colbox;
         }
-        public void GiveRectangleObstacle(Rectangle _obstacle)
+        public  void GiveRectangleObstacle(Rectangle _obstacle)
         {
-            obstacle = _obstacle;
+            obstacleList.Add(_obstacle);
+
         }
         public void Execute(ITransform transform, Vector2 direction)
         {
-            if (colMan.CheckCollision(colBox, obstacle) == angle.Right)
+            foreach (Rectangle obstacle in obstacleList)
             {
-                speed = Vector2.Zero;
-                Debug.WriteLine("aaaaaa");
+                if (Global.colMan.CheckCollision(colBox, obstacle) == angle.Right)
+                {
+                    speed = Vector2.Zero;
+                    Debug.WriteLine("aaaaaa");
+                }
             }
+            
             direction *= speed;
             transform.Position += direction;            
         }
