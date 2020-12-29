@@ -10,7 +10,6 @@ namespace ShadowGame.Command
     {
         void Execute(ITransform transform, Vector2 direction, Rectangle hitBox);
 
-        //void GiveRectangleColBox(Rectangle _colBox);
         void GiveRectangleObstacle(Rectangle _obstacle);
     }
 }

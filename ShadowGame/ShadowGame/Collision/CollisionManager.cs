@@ -8,23 +8,55 @@ namespace ShadowGame.Collision
     public enum angle { None, Top, Bottom, Left, Right}
     public class CollisionManager
     {
+        private angle angle;
         public angle CheckCollision(Rectangle collisionbox, Rectangle obstacle)
         {
             if (collisionbox.Intersects(obstacle))
             {
-                /*
-                if (collisionbox.Right > obstacle.Left && collisionbox.Left < obstacle.Left && ((collisionbox.Top < obstacle.Top && collisionbox.Bottom > obstacle.Bottom) || (collisionbox.Top > obstacle.Top && collisionbox.Top < obstacle.Bottom) || (collisionbox.Bottom > obstacle.Top && collisionbox.Bottom < obstacle.Bottom)))
+
+                if (collisionbox.Right > obstacle.Left && collisionbox.Left < obstacle.Left)
                 {
-                    return angle.Right;
+                    angle = angle.Right;
+
+                    if (collisionbox.Top < obstacle.Top && collisionbox.Bottom > obstacle.Bottom)
+                    {
+                        angle = angle.Right;
+
+                        if (collisionbox.Top > obstacle.Top && collisionbox.Top < obstacle.Bottom)
+                        {
+                            angle = angle.Right;
+
+                            if (collisionbox.Bottom > obstacle.Top && collisionbox.Bottom < obstacle.Bottom)
+                            {
+                                angle = angle.Right;
+                            }
+                        }
+                    }
                 }
-                if (collisionbox.Right > obstacle.Right && collisionbox.Left < obstacle.Left && ((collisionbox.Top < obstacle.Top && collisionbox.Bottom > obstacle.Bottom) || (collisionbox.Top > obstacle.Top && collisionbox.Top < obstacle.Bottom) || (collisionbox.Bottom > obstacle.Top && collisionbox.Bottom < obstacle.Bottom)))
+
+                if (collisionbox.Right > obstacle.Right && collisionbox.Left < obstacle.Left)
                 {
-                    return angle.Left;
+                    angle = angle.Left;
+
+                    if (collisionbox.Top < obstacle.Top && collisionbox.Bottom > obstacle.Bottom)
+                    {
+                        angle = angle.Left;
+
+                        if (collisionbox.Top > obstacle.Top && collisionbox.Top < obstacle.Bottom)
+                        {
+                            angle = angle.Left;
+
+                            if (collisionbox.Bottom > obstacle.Top && collisionbox.Bottom < obstacle.Bottom)
+                            {
+                                angle = angle.Left;
+                            }
+                        }
+                    }
                 }
-                */
-                return angle.Right;
+
+                return angle;
             }
-            return angle.None;
+            else { return angle.None; }
         }
     }
 }

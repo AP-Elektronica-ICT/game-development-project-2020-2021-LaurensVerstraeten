@@ -34,8 +34,16 @@ namespace ShadowGame.Command
                 }
                 if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Left)
                 {
-                    speed = Vector2.Zero;
+                    direction = Vector2.Zero;
 
+                }
+                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Top)
+                {
+                    //y op 0 zetten
+                }
+                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Bottom)
+                {
+                    //y op 0 zetten
                 }
 
             }

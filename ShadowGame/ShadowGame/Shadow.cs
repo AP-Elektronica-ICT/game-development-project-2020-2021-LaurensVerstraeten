@@ -26,6 +26,7 @@ namespace ShadowGame
         IInputReader inputReader;
         IAnimation walkRight;
         IAnimation walkLeft;
+        IAnimation idle;
         IAnimation currentAnimation;
 
         //private IGameCommand moveCommand;
@@ -36,6 +37,7 @@ namespace ShadowGame
             shadowTexture = texture;
             walkRight = new RightAnimation(texture, this);
             walkLeft = new LeftAnimation(texture, this);
+            //idle = new IdleAnimation();
             currentAnimation = walkRight;
 
             //Read input for my shadow class
@@ -43,7 +45,7 @@ namespace ShadowGame
 
             //moveCommand = new MoveCommand();
 
-            Position = new Vector2(0, 0);
+            Position = new Vector2(20, 0);
 
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
             FutureHitbox = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
