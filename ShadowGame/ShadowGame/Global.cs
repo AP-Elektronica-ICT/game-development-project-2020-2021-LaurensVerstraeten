@@ -6,10 +6,10 @@ using System.Text;
 
 namespace ShadowGame
 {
-    class Global
+    public static class Global
     {
-        public static MoveCommand moveCommand;
+        public static MoveCommand moveCommand = new MoveCommand();
 
-        public static CollisionManager colMan;
+        public static CollisionManager colMan = new CollisionManager();
     }
 }

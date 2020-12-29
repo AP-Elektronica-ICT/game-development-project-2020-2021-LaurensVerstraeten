@@ -8,9 +8,9 @@ namespace ShadowGame.Command
 {
     interface IGameCommand
     {
-        void Execute(ITransform transform, Vector2 direction);
+        void Execute(ITransform transform, Vector2 direction, Rectangle hitBox);
 
-        void GiveRectangleColBox(Rectangle _colBox);
+        //void GiveRectangleColBox(Rectangle _colBox);
         void GiveRectangleObstacle(Rectangle _obstacle);
     }
 }

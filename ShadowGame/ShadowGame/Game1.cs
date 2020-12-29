@@ -17,7 +17,6 @@ namespace ShadowGame
 
         private Texture2D texture;
         Shadow shadow;
-        Global global;
         LevelOne level;
 
         public Game1()

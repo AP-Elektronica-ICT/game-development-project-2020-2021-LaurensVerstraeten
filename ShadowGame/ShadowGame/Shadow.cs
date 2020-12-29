@@ -10,6 +10,7 @@ using ShadowGame.Interfaces;
 using ShadowGame.World;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ShadowGame
@@ -20,6 +21,7 @@ namespace ShadowGame
         public Vector2 Position { get; set; }
         //public Rectangle CollisionRectangle { get; set; }
         private Rectangle Hitbox;
+        private Rectangle FutureHitbox;
 
         IInputReader inputReader;
         IAnimation walkRight;
@@ -44,6 +46,7 @@ namespace ShadowGame
             Position = new Vector2(0, 0);
 
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
+            FutureHitbox = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
 
         }
 
@@ -52,9 +55,10 @@ namespace ShadowGame
             var direction = inputReader.ReadInput();
 
             Move(direction);
-            Global.moveCommand.GiveRectangleColBox(Hitbox);
+            //Global.moveCommand.GiveRectangleColBox(Hitbox);
             currentAnimation.update(gameTime);
-            
+            Debug.WriteLine(Hitbox);
+            Debug.WriteLine(FutureHitbox);
             Hitbox.X = (int)Position.X;
             Hitbox.Y = (int)Position.Y;            
         }
@@ -64,13 +68,19 @@ namespace ShadowGame
             if (_direction.X == 1)
             {
                 currentAnimation = walkRight;
+                FutureHitbox.X = (int)Position.X + 1;
             }
             if (_direction.X == -1)
             {
                 currentAnimation = walkLeft;
+                FutureHitbox.X = (int)Position.X - 1;
+            }
+            if (_direction.X == 0)
+            {
+                //FutureHitbox.X = 0;
             }
             //moveCommand.Execute(this, _direction);
-            Global.moveCommand.Execute(this, _direction);
+            Global.moveCommand.Execute(this, _direction, FutureHitbox);
         }
 
         public void Draw(SpriteBatch spriteBatch)

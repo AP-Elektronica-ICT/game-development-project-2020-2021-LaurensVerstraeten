@@ -10,7 +10,6 @@ namespace ShadowGame.Command
 {
     public class MoveCommand : IGameCommand
     {
-        public Rectangle colBox {get; set; }
         public List<Rectangle> obstacleList { get; set; } = new List<Rectangle>();
         public Vector2 speed;
 
@@ -18,25 +17,27 @@ namespace ShadowGame.Command
         {
             speed = new Vector2(5, 0);
         }
-
-        public  void GiveRectangleColBox(Rectangle _colbox)
-        {
-            colBox = _colbox;
-        }
-        public  void GiveRectangleObstacle(Rectangle _obstacle)
+        
+        public void GiveRectangleObstacle(Rectangle _obstacle)
         {
             obstacleList.Add(_obstacle);
 
         }
-        public void Execute(ITransform transform, Vector2 direction)
+        public void Execute(ITransform transform, Vector2 direction, Rectangle hitBox)
         {
             foreach (Rectangle obstacle in obstacleList)
             {
-                if (Global.colMan.CheckCollision(colBox, obstacle) == angle.Right)
+                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Right)
                 {
-                    speed = Vector2.Zero;
+                    direction = Vector2.Zero;
                     Debug.WriteLine("aaaaaa");
                 }
+                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Left)
+                {
+                    speed = Vector2.Zero;
+
+                }
+
             }
             
             direction *= speed;
