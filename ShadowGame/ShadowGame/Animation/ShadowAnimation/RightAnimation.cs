@@ -19,9 +19,9 @@ namespace ShadowGame.Animation.ShadowAnimation
             this.transform = transform;
             this.texture = texture;
             _animatie = new Animatie();
-            for (int i = 0; i < 1260; i += 126)
+            for (int i = 0; i < 420; i += 42)
             {
-                _animatie.AddFrame(new AnimationFrame(new Rectangle(i, 0, 126, 111)));
+                _animatie.AddFrame(new AnimationFrame(new Rectangle(i, 0, 42, 37)));
             }
         }
 

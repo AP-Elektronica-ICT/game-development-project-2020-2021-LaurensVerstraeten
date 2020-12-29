@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ShadowGame.Animation.ShadowAnimation;
 using ShadowGame.Collision;
 using ShadowGame.Input;
 using ShadowGame.LevelDesign;
@@ -40,7 +41,7 @@ namespace ShadowGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            texture = Content.Load<Texture2D>("ShadowRunningFixed");
+            texture = Content.Load<Texture2D>("ShadowSprite");
 
             InitializeGameObject();
             // TODO: use this.Content to load your game content here
