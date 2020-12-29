@@ -23,6 +23,12 @@ namespace ShadowGame.Command
             obstacleList.Add(_obstacle);
 
         }
+
+        public void DeleteList()
+        {
+            obstacleList.Clear();
+        }
+        //right en bottom in array steken
         public void Execute(ITransform transform, Vector2 direction, Rectangle hitBox)
         {
             foreach (Rectangle obstacle in obstacleList)
@@ -30,12 +36,12 @@ namespace ShadowGame.Command
                 if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Right)
                 {
                     direction = Vector2.Zero;
-                    Debug.WriteLine("aaaaaa");
+                    Debug.WriteLine("RECHTS");
                 }
                 if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Left)
                 {
                     direction = Vector2.Zero;
-
+                    Debug.WriteLine("LINKS");
                 }
                 if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Top)
                 {

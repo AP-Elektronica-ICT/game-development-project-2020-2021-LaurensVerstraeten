@@ -45,7 +45,7 @@ namespace ShadowGame
 
             //moveCommand = new MoveCommand();
 
-            Position = new Vector2(20, 0);
+            Position = new Vector2(50, 0);
 
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
             FutureHitbox = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
@@ -59,8 +59,8 @@ namespace ShadowGame
             Move(direction);
             //Global.moveCommand.GiveRectangleColBox(Hitbox);
             currentAnimation.update(gameTime);
-            Debug.WriteLine(Hitbox);
-            Debug.WriteLine(FutureHitbox);
+            //Debug.WriteLine(Hitbox);
+            //Debug.WriteLine(FutureHitbox);
             Hitbox.X = (int)Position.X;
             Hitbox.Y = (int)Position.Y;            
         }
