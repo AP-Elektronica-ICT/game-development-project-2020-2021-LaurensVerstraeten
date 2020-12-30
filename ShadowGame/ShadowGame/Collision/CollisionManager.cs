@@ -9,6 +9,7 @@ namespace ShadowGame.Collision
     public class CollisionManager
     {
         private angle angle;
+        private int offset = 1;
         public angle CheckCollision(Rectangle collisionbox, Rectangle obstacle)
         {
             if (collisionbox.Intersects(obstacle))
@@ -48,20 +49,36 @@ namespace ShadowGame.Collision
                         angle = angle.Left;
                     }
                 }
-
-                if (true)
+                
+                if (collisionbox.Top - 1 < obstacle.Bottom && collisionbox.Bottom + 1 > obstacle.Bottom && collisionbox.Top - 1 > obstacle.Top)
                 {
-                    if (true)
+                    if (collisionbox.Left < obstacle.Left && collisionbox.Right - 1 > obstacle.Left)
                     {
-
+                        angle = angle.Top;
                     }
-                    if (true)
+                    if (collisionbox.Left + 1 < obstacle.Right && collisionbox.Right > obstacle.Right)
                     {
-
+                        angle = angle.Top;
                     }
-                    if (true)
+                    if (collisionbox.Left > obstacle.Left && collisionbox.Right < obstacle.Right)
                     {
-
+                        angle = angle.Top;
+                    }
+                }
+                
+                if (collisionbox.Bottom + 1 > obstacle.Top && collisionbox.Top - 1 < obstacle.Top && collisionbox.Bottom + 1 < obstacle.Bottom)
+                {
+                    if (collisionbox.Left < obstacle.Left && collisionbox.Right - 1 > obstacle.Left)
+                    {
+                        angle = angle.Bottom;
+                    }
+                    if (collisionbox.Left + 1 < obstacle.Right && collisionbox.Right > obstacle.Right)
+                    {
+                        angle = angle.Bottom;
+                    }
+                    if (collisionbox.Left > obstacle.Left && collisionbox.Right < obstacle.Right)
+                    {
+                        angle = angle.Bottom;
                     }
                 }
                                             
