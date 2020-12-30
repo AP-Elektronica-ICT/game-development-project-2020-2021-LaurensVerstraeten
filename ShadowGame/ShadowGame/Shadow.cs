@@ -98,7 +98,8 @@ namespace ShadowGame
             if (Global.hasJumped == true)
             {
                 float i = 1;
-                _direction.Y += 0.15f * i;
+                _direction.Y += 1.15f * i;
+                FutureHitbox.Y = (int)Position.Y - 1;
             }
             if (_direction.Y == -5)
             {

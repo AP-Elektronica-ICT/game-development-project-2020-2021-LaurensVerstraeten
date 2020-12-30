@@ -37,20 +37,29 @@ namespace ShadowGame.Command
                 {
                     direction = Vector2.Zero;
                     Debug.WriteLine("RECHTS");
+                    Global.hasJumped = true;
                 }
                 if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Left)
                 {
                     direction = Vector2.Zero;
                     Debug.WriteLine("LINKS");
+                    Global.hasJumped = true;
                 }
                 if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Top)
                 {
                     speed.Y = 0f;
+                    Global.hasJumped = true;
                 }
                 if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Bottom)
                 {
                     speed.Y = 0f;
                     Global.hasJumped = false;
+                    Debug.WriteLine("BOTTOM");
+                }
+                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.None)
+                {
+                    Global.hasJumped = true;
+                    Debug.WriteLine("NO COL DEC");
                 }
 
             }

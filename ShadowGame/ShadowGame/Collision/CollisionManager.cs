@@ -14,7 +14,7 @@ namespace ShadowGame.Collision
         {
             if (collisionbox.Intersects(obstacle))
             {   
-                if (collisionbox.Right > obstacle.Left && collisionbox.Left < obstacle.Left)
+                if (collisionbox.Right > obstacle.Left && collisionbox.Left < obstacle.Left && collisionbox.Right + 25 > obstacle.Right)
                 {
                     //angle = angle.Right;
 
@@ -32,7 +32,7 @@ namespace ShadowGame.Collision
                     }
                 }
                 
-                if (collisionbox.Right > obstacle.Right && collisionbox.Left < obstacle.Right)
+                if (collisionbox.Left < obstacle.Right && collisionbox.Right > obstacle.Right && collisionbox.Left - 25 < obstacle.Left)
                 {
                     //angle = angle.Left;
                     
