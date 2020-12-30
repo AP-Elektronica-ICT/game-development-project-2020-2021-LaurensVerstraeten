@@ -37,6 +37,7 @@ namespace ShadowGame
         {
             
             shadowTexture = texture;
+            Global.hasJumped = true;
             walkRight = new RightAnimation(texture, this);
             walkLeft = new LeftAnimation(texture, this);
             leftIdle = new LeftIdleAnimation(texture, this);
@@ -60,6 +61,7 @@ namespace ShadowGame
             var direction = inputReader.ReadInput();
 
             Move(direction);
+            
             //Global.moveCommand.GiveRectangleColBox(Hitbox);
             currentAnimation.update(gameTime);
             //Debug.WriteLine(Hitbox);
@@ -93,6 +95,17 @@ namespace ShadowGame
                     currentAnimation = leftIdle;
                 }
             }
+            if (Global.hasJumped == true)
+            {
+                float i = 1;
+                _direction.Y += 0.15f * i;
+            }
+            if (_direction.Y == -5)
+            {
+                FutureHitbox.Y = (int)Position.Y - 1;
+                Debug.WriteLine("jump");
+            }
+            
             //moveCommand.Execute(this, _direction);
             Global.moveCommand.Execute(this, _direction, FutureHitbox);
         }

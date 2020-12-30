@@ -20,6 +20,11 @@ namespace ShadowGame.Input
             {
                 direction = new Vector2(1, 0);
             }
+            if (state.IsKeyDown(Keys.Up)) //&& Global.hasJumped == false)
+            {
+                direction = new Vector2(0, -5);
+                Global.hasJumped = true;
+            }
 
             return direction;
         }

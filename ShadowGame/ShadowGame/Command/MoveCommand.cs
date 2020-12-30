@@ -15,7 +15,7 @@ namespace ShadowGame.Command
 
         public MoveCommand()
         {
-            speed = new Vector2(5, 0);
+            speed = new Vector2(5, 1);
         }
         
         public void GiveRectangleObstacle(Rectangle _obstacle)
@@ -45,11 +45,12 @@ namespace ShadowGame.Command
                 }
                 if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Top)
                 {
-                    //y op 0 zetten
+                    speed.Y = 0f;
                 }
                 if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Bottom)
                 {
-                    //y op 0 zetten
+                    speed.Y = 0f;
+                    Global.hasJumped = false;
                 }
 
             }

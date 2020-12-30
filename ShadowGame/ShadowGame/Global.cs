@@ -11,5 +11,7 @@ namespace ShadowGame
         public static MoveCommand moveCommand = new MoveCommand();
 
         public static CollisionManager colMan = new CollisionManager();
+
+        public static bool hasJumped;
     }
 }
