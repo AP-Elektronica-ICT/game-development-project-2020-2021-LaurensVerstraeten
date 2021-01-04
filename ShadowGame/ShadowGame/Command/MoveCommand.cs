@@ -11,11 +11,11 @@ namespace ShadowGame.Command
     public class MoveCommand : IGameCommand
     {
         //public List<Rectangle> obstacleList { get; set; } = new List<Rectangle>();
-        public Vector2 speed;
+        private Shadow character;
 
-        public MoveCommand()
+        public void Context(Shadow shadow)
         {
-            speed = new Vector2(5, 1);
+            character = shadow;
         }
         
         //public void GiveRectangleObstacle(Rectangle _obstacle)
@@ -29,7 +29,7 @@ namespace ShadowGame.Command
         //}
 
         //right en bottom in array steken
-        public void Execute(ITransform transform, Vector2 direction, Rectangle hitBox)
+        public void Execute()
         {
             //foreach (Rectangle obstacle in obstacleList)
             //{
@@ -65,9 +65,8 @@ namespace ShadowGame.Command
             //    //}
 
             //}
-            
-            direction *= speed;
-            transform.Position += direction;            
+
+            character.velocity.X = 5 * character.direction.X;
         }
 
 

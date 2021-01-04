@@ -11,12 +11,12 @@ namespace ShadowGame.Animation.ShadowAnimation
     {
         private Animatie _animatie;
         public Texture2D texture;
-        public ITransform transform;
+        public Vector2 position;
         public Animatie animatie { get { return _animatie; } set { _animatie = value; } }
 
-        public RightAnimation(Texture2D texture, ITransform transform)
+        public RightAnimation(Texture2D texture, Vector2 Position)
         {
-            this.transform = transform;
+            this.position = Position;
             this.texture = texture;
             _animatie = new Animatie();
             for (int i = 0; i < 420; i += 42)
@@ -25,9 +25,10 @@ namespace ShadowGame.Animation.ShadowAnimation
             }
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public void draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            spriteBatch.Draw(this.texture, new Rectangle((int)transform.Position.X, (int)transform.Position.Y, 55, 55), _animatie.currentFrame.SourceRectangle, Color.White);
+            this.position = _position;
+            spriteBatch.Draw(this.texture, new Rectangle((int)position.X, (int)position.Y, 55, 55), _animatie.currentFrame.SourceRectangle, Color.White);
         }
 
         public void update(GameTime gameTime)

@@ -11,20 +11,21 @@ namespace ShadowGame.Animation.ShadowAnimation
     {
         private Animatie _animatie;
         public Texture2D texture;
-        public ITransform transform;
+        public Vector2 position;
         public Animatie animatie { get { return _animatie; } set { _animatie = value; } }
 
-        public LeftIdleAnimation(Texture2D texture, ITransform transform)
+        public LeftIdleAnimation(Texture2D texture, Vector2 Position)
         {
-            this.transform = transform;
+            this.position = Position;
             this.texture = texture;
             _animatie = new Animatie();
             _animatie.AddFrame(new AnimationFrame(new Rectangle(0, 41, 42, 37)));
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public void draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            spriteBatch.Draw(this.texture, new Rectangle((int)transform.Position.X, (int)transform.Position.Y, 55, 55), _animatie.currentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+            this.position = _position;
+            spriteBatch.Draw(this.texture, new Rectangle((int)position.X, (int)position.Y, 55, 55), _animatie.currentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
         }
         public void update(GameTime gameTime)
         {
