@@ -15,43 +15,70 @@ namespace ShadowGame.LevelDesign
         //platformen zijn een array van tiles
         //in level heb je een list/array van uw platforms en hier roep je uw array aan om te draw
         //array roept rectangles aan
+        private List<Block> collisionTiles = new List<Block>();
+        public List<Block> CollisionTiles
+        {
+            get { return collisionTiles; }
+        }
+
+        private int width, height;
+        public int Width
+        {
+            get { return width; }
+        }
+        public int Height
+        {
+            get { return height; }
+        }
+
         public Texture2D texture;
 
-        public byte[,] levelArray = new byte[,]
+        public byte[,] map = new byte[,]
         {
-            {0,0,1,1},
-            {0,0,0,1},
-            {0,0,0,1},
-            {0,0,0,1},
-            {0,0,0,1},
-            {0,0,0,1},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+
         };
 
-        private Block[,] blockArray = new Block[6, 4];
+        public LevelOne() { }
+
         //private Block[,]  = new Block[3, 1];
 
         private ContentManager Content;
 
-        public LevelOne(ContentManager content)
-        {
-            this.Content = content;
-            InitializeContent();
-        }
+        //public LevelOne(ContentManager content)
+        //{
+        //    this.Content = content;
+        //    InitializeContent();
+        //}
 
         private void InitializeContent()
         {
             texture = Content.Load<Texture2D>("block");
         }
 
-        public void CreateWorld()
+        public void CreateWorld(int size)
         {
-            for (int x = 0; x < 6; x++)
+            for (int x = 0; x < map.GetLength(1); x++)
             {
-                for (int y = 0; y < 4; y++)
+                for (int y = 0; y < map.GetLength(0); y++)
                 {
-                    if (levelArray[x, y] == 1)
+                    int number = map[y, x];
+                    if (number == 1)
                     {
-                        blockArray[x, y] = new Block(texture, new Vector2(x * 30 , y * 30 ));
+                        collisionTiles.Add(new Block(new Rectangle(x * size, y * size, size, size)));
+
+                        width = (x + 1) * size;
+                        height = (y + 1) * size;
                     }
                 }
 
@@ -60,15 +87,9 @@ namespace ShadowGame.LevelDesign
 
         public void DrawWorld(SpriteBatch spriteBatch)
         {
-            for (int x = 0; x < 6; x++)
+            foreach (Block tile in collisionTiles)
             {
-                for (int y = 0; y < 4; y++)
-                {
-                    if (blockArray[x, y] != null)
-                    {
-                        blockArray[x, y].Draw(spriteBatch);
-                    }
-                }
+                tile.Draw(spriteBatch);
             }
         }
 

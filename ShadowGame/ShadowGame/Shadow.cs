@@ -49,19 +49,19 @@ namespace ShadowGame
 
             //moveCommand = new MoveCommand();
 
-            Position = new Vector2(50, 0);
+            //startpositie
+            Position = new Vector2(50, -100);
 
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
             FutureHitbox = new Rectangle((int)Position.X, (int)Position.Y, 55, 55);
-
         }
 
         public void Update(GameTime gameTime)
         {
             var direction = inputReader.ReadInput();
 
-            Move(direction);
-            
+            Move(direction, gameTime);
+                        
             //Global.moveCommand.GiveRectangleColBox(Hitbox);
             currentAnimation.update(gameTime);
             //Debug.WriteLine(Hitbox);
@@ -70,7 +70,7 @@ namespace ShadowGame
             Hitbox.Y = (int)Position.Y;            
         }
 
-        private void Move(Vector2 _direction)
+        private void Move(Vector2 _direction, GameTime gameTime)
         {
             if (_direction.X == 1)
             {
@@ -97,16 +97,22 @@ namespace ShadowGame
             }
             if (Global.hasJumped == true)
             {
-                float i = 1;
-                _direction.Y += 1.15f * i;
-                FutureHitbox.Y = (int)Position.Y - 1;
+                float gravity = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Debug.WriteLine(gravity);
+                _direction.Y += 9.81f * gravity;
+                FutureHitbox.Y = (int)Position.Y + 1;
             }
-            if (_direction.Y == -5)
-            {
-                FutureHitbox.Y = (int)Position.Y - 1;
-                Debug.WriteLine("jump");
-            }
-            
+
+            Debug.WriteLine(_direction);
+
+            //if (_direction.Y == -5)
+            //{
+            //    FutureHitbox.Y = (int)Position.Y - 1;
+            //    Debug.WriteLine("jump");
+            //}
+
+            //Debug.WriteLine(_direction);
+            //Debug.WriteLine(FutureHitbox);
             //moveCommand.Execute(this, _direction);
             Global.moveCommand.Execute(this, _direction, FutureHitbox);
         }

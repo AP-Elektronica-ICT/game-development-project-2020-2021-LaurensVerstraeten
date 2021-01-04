@@ -30,9 +30,9 @@ namespace ShadowGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            level = new LevelOne(Content);
-            level.CreateWorld();
-            
+            Global.Content = Content;
+            level = new LevelOne();
+            level.CreateWorld(30);
 
             base.Initialize();
         }

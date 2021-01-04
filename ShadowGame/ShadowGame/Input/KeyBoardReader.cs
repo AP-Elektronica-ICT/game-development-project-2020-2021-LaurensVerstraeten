@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ShadowGame.Input
@@ -20,10 +21,11 @@ namespace ShadowGame.Input
             {
                 direction = new Vector2(1, 0);
             }
-            if (state.IsKeyDown(Keys.Up)) //&& Global.hasJumped == false)
+            if (state.IsKeyDown(Keys.Up)) // && Global.hasJumped == false)
             {
                 direction = new Vector2(0, -5);
                 Global.hasJumped = true;
+                Debug.WriteLine("SPRING");
             }
 
             return direction;
