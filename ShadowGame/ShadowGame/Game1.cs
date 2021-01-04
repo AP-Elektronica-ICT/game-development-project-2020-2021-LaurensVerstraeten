@@ -32,7 +32,7 @@ namespace ShadowGame
             // TODO: Add your initialization logic here
             Global.Content = Content;
             level = new LevelOne();
-            level.CreateWorld(30);
+            level.CreateWorld(32);
 
             base.Initialize();
         }
@@ -59,6 +59,10 @@ namespace ShadowGame
 
             // TODO: Add your update logic here
             shadow.Update(gameTime);
+            foreach (Block tile in level.CollisionTiles)
+            {
+                shadow.Collision(tile.Rectangle, level.Width, level.Height);
+            }
             //List clearen
             base.Update(gameTime);
         }

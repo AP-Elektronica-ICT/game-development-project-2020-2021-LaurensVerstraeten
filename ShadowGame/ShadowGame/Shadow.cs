@@ -110,9 +110,7 @@ namespace ShadowGame
                 {
                     currentAnimation = leftIdle;
                 }
-            }
-            
-            Debug.WriteLine(_direction);
+            }                    
 
             //if (_direction.Y == -5)
             //{
@@ -130,7 +128,7 @@ namespace ShadowGame
         {
             if (Hitbox.TouchTopOF(newRectangle))
             {
-                Hitbox.Y = newRectangle.Y - Hitbox.Height;
+                position.Y = newRectangle.Y - Hitbox.Height;
                 velocity.Y = 0f;
                 hasJumped = false;
             }
@@ -139,6 +137,21 @@ namespace ShadowGame
             {
                 position.X = newRectangle.X - Hitbox.Width - 2;
             }
+
+            if (Hitbox.TouchRightOf(newRectangle))
+            {
+                position.X = newRectangle.X + newRectangle.Width + 2;
+            }
+
+            if (Hitbox.TouchBottomOf(newRectangle))
+            {
+                velocity.Y = 1f;
+            }
+
+            if (position.X < 0) position.X = 0;
+            if (position.X > xOffset - Hitbox.Width) position.X = xOffset - Hitbox.Width;
+            if (position.Y < 0) velocity.Y = 1f;
+            //if (position.Y > yOffset - Hitbox.Height) position.Y = yOffset - Hitbox.Height;
 
         }
 

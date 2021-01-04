@@ -29,9 +29,7 @@ namespace ShadowGame.LevelDesign
         public int Height
         {
             get { return height; }
-        }
-
-        public Texture2D texture;
+        }              
 
         public byte[,] map = new byte[,]
         {
@@ -41,11 +39,11 @@ namespace ShadowGame.LevelDesign
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0},
 
         };
 
@@ -53,18 +51,11 @@ namespace ShadowGame.LevelDesign
 
         //private Block[,]  = new Block[3, 1];
 
-        private ContentManager Content;
-
         //public LevelOne(ContentManager content)
         //{
         //    this.Content = content;
         //    InitializeContent();
         //}
-
-        private void InitializeContent()
-        {
-            texture = Content.Load<Texture2D>("block");
-        }
 
         public void CreateWorld(int size)
         {

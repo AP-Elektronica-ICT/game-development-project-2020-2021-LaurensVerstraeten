@@ -67,6 +67,7 @@ namespace ShadowGame.Command
             //}
 
             character.velocity.X = 5 * character.direction.X;
+            //character.velocity.Y = 1 * character.direction.Y;
         }
 
 
