@@ -9,7 +9,7 @@ namespace ShadowGame.Animation
     interface IAnimation
     {
         public Animatie animatie { get; set; }
-        public void draw(SpriteBatch spriteBatch, Vector2 _position);
+        public void draw(SpriteBatch spriteBatch, Vector2 _position, SpriteEffects flip);
         public void update(GameTime gameTime);
         
 

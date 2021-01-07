@@ -11,8 +11,10 @@ namespace ShadowGame
     {
         public static MoveCommand moveCommand = new MoveCommand();
 
-        //public static CollisionManager colMan = new CollisionManager();
+        public static JumpCommand jumpCommand = new JumpCommand();
 
+        //public static CollisionManager colMan = new CollisionManager();
+        public static int shadowScale = 42;
         public static ContentManager Content;
 
         //public static bool hasJumped { get; set; }

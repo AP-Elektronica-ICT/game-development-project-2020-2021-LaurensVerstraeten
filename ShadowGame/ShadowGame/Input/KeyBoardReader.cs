@@ -23,7 +23,7 @@ namespace ShadowGame.Input
             }
             if (state.IsKeyDown(Keys.Up) && hasJumped == false)
             {
-                direction = new Vector2(0, -10);
+                direction = new Vector2(0, -7.8f);
                 hasJumped = true;
                 Debug.WriteLine("SPRING");
             }

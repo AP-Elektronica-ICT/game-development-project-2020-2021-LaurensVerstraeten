@@ -15,12 +15,12 @@ using System.Text;
 
 namespace ShadowGame
 {
-    public class Shadow : IGameObject //ITransform
+    public class Shadow : IGameObject
     {
         private Texture2D shadowTexture;
         private Vector2 position;
         public Vector2 velocity;
-        private string directionBefore;
+        private Vector2 directionLooking = new Vector2(1, 0);
         public Vector2 direction;
         public Vector2 Position
         {
@@ -29,27 +29,22 @@ namespace ShadowGame
 
         //public Rectangle CollisionRectangle { get; set; }
         private Rectangle Hitbox;
-        private Rectangle FutureHitbox;
         public bool hasJumped = false;
 
-        IInputReader inputReader;
-        IAnimation walkRight;
-        IAnimation walkLeft;
-        IAnimation leftIdle;
-        IAnimation rightIdle;
+        IInputReader inputReader;        
         IAnimation currentAnimation;
-
+        IAnimation idle;
+        IAnimation walk;
+        
         //private IGameCommand moveCommand;
 
         public Shadow(Texture2D texture, IInputReader reader)
         {
             position = new Vector2(50, 0);
-            shadowTexture = texture;
-            walkRight = new RightAnimation(texture, position);
-            walkLeft = new LeftAnimation(texture, position);
-            leftIdle = new LeftIdleAnimation(texture, position);
-            rightIdle = new RightIdleAnimation(texture, position);
-            currentAnimation = rightIdle;
+            shadowTexture = texture;            
+            walk = new WalkAnimation(texture, position);
+            idle = new IdleAnimation(texture, position);
+            currentAnimation = idle;
 
             //Read input for my shadow class
             this.inputReader = reader;
@@ -59,23 +54,24 @@ namespace ShadowGame
             //startpositie
             //position = new Vector2(0, 0);
             
-            Hitbox = new Rectangle((int)position.X, (int)position.Y, 42, 42);
-            FutureHitbox = new Rectangle((int)position.X, (int)position.Y, 42, 42);
+            Hitbox = new Rectangle((int)position.X, (int)position.Y, Global.shadowScale, Global.shadowScale);
+            //FutureHitbox = new Rectangle((int)position.X, (int)position.Y, 42, 42);
 
             Global.moveCommand.Context(this);
+            Global.jumpCommand.Context(this);
         }
 
         public void Update(GameTime gameTime)
         {
             direction = inputReader.ReadInput(hasJumped);
-            
+            //float gravityByTime = 
 
             if (velocity.Y < 10)
             {
                 velocity.Y += 0.4f;
             }
             Move(direction, gameTime);
-            Debug.WriteLine(velocity);
+            //Debug.WriteLine(velocity);
             position += velocity;
 
             //Global.moveCommand.GiveRectangleColBox(Hitbox);
@@ -90,38 +86,36 @@ namespace ShadowGame
         {
             if (_direction.X == 1)
             {
-                currentAnimation = walkRight;
-                FutureHitbox.X = (int)position.X + 1;
-                directionBefore = "right";
+                currentAnimation = walk;
+                directionLooking.X = 1;
             }
             if (_direction.X == -1)
             {
-                currentAnimation = walkLeft;
-                FutureHitbox.X = (int)position.X - 1;
-                directionBefore = "left";
+                currentAnimation = walk;
+                directionLooking.X = -1;
             }
             if (_direction.X == 0)
             {
+                currentAnimation = idle;
+                /*
                 if (directionBefore == "right")
                 {
-                    currentAnimation = rightIdle;
+                    currentAnimation = Idle;
                 }
                 if (directionBefore == "left")
                 {
                     currentAnimation = leftIdle;
                 }
-            }                    
+                */
+            }
 
-            //if (_direction.Y == -5)
-            //{
-            //    FutureHitbox.Y = (int)Position.Y - 1;
-            //    Debug.WriteLine("jump");
-            //}
-
-            //Debug.WriteLine(_direction);
-            //Debug.WriteLine(FutureHitbox);
-            //moveCommand.Execute(this, _direction);
             Global.moveCommand.Execute();
+
+            if (_direction.Y == -7.8f)
+            {
+                Global.jumpCommand.Execute();
+            }                      
+            
         }
 
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
@@ -157,7 +151,12 @@ namespace ShadowGame
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            currentAnimation.draw(spriteBatch, position);
+            SpriteEffects flip = SpriteEffects.None;
+            if (directionLooking.X == -1)
+            {
+                flip = SpriteEffects.FlipHorizontally;
+            }
+            currentAnimation.draw(spriteBatch, position, flip);
         }
     }
 }

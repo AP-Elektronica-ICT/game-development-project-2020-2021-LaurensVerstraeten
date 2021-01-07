@@ -15,7 +15,7 @@ namespace ShadowGame
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        private Texture2D textureBackground;
         private Texture2D texture;
         Shadow shadow;
         LevelOne level;
@@ -30,6 +30,9 @@ namespace ShadowGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferWidth = 1275;
+            _graphics.PreferredBackBufferHeight = 700;
+            _graphics.ApplyChanges();
             Global.Content = Content;
             level = new LevelOne();
             level.CreateWorld(25);
@@ -41,6 +44,7 @@ namespace ShadowGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            textureBackground = Content.Load<Texture2D>("greenhill");
             texture = Content.Load<Texture2D>("ShadowSprite");
 
             InitializeGameObject();
@@ -76,6 +80,7 @@ namespace ShadowGame
             _spriteBatch.Begin();
 
             // TODO: Add sprites
+            _spriteBatch.Draw(textureBackground, new Rectangle(0, 0, 1280, 720), Color.White);
             level.DrawWorld(_spriteBatch);
             shadow.Draw(_spriteBatch);
             
