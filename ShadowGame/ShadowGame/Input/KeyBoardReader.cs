@@ -2,14 +2,15 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ShadowGame.Input
 {
     class KeyBoardReader : IInputReader
-    {
-        public Vector2 ReadInput()
-        {
+    {        
+        public Vector2 ReadInput(bool hasJumped)
+        {            
             var direction = Vector2.Zero;
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Left))
@@ -20,10 +21,11 @@ namespace ShadowGame.Input
             {
                 direction = new Vector2(1, 0);
             }
-            if (state.IsKeyDown(Keys.Up)) //&& Global.hasJumped == false)
+            if (state.IsKeyDown(Keys.Up) && hasJumped == false)
             {
-                direction = new Vector2(0, -5);
-                Global.hasJumped = true;
+                direction = new Vector2(0, -10);
+                hasJumped = true;
+                Debug.WriteLine("SPRING");
             }
 
             return direction;

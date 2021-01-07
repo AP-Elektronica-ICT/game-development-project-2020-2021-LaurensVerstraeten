@@ -1,4 +1,5 @@
-﻿using ShadowGame.Collision;
+﻿using Microsoft.Xna.Framework.Content;
+using ShadowGame.Collision;
 using ShadowGame.Command;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,10 @@ namespace ShadowGame
     {
         public static MoveCommand moveCommand = new MoveCommand();
 
-        public static CollisionManager colMan = new CollisionManager();
+        //public static CollisionManager colMan = new CollisionManager();
 
-        public static bool hasJumped;
+        public static ContentManager Content;
+
+        //public static bool hasJumped { get; set; }
     }
 }

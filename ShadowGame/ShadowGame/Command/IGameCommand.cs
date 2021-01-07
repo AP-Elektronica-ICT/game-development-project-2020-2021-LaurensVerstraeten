@@ -8,8 +8,10 @@ namespace ShadowGame.Command
 {
     interface IGameCommand
     {
-        void Execute(ITransform transform, Vector2 direction, Rectangle hitBox);
+        //enemy en hero moeten dan overerven van entity
+        void Context(Shadow entity);
+        void Execute();
 
-        void GiveRectangleObstacle(Rectangle _obstacle);
+        //void GiveRectangleObstacle(Rectangle _obstacle);
     }
 }

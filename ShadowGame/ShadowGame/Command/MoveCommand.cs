@@ -10,64 +10,63 @@ namespace ShadowGame.Command
 {
     public class MoveCommand : IGameCommand
     {
-        public List<Rectangle> obstacleList { get; set; } = new List<Rectangle>();
-        public Vector2 speed;
+        //public List<Rectangle> obstacleList { get; set; } = new List<Rectangle>();
+        private Shadow character;
 
-        public MoveCommand()
+        public void Context(Shadow shadow)
         {
-            speed = new Vector2(5, 1);
+            character = shadow;
         }
         
-        public void GiveRectangleObstacle(Rectangle _obstacle)
-        {
-            obstacleList.Add(_obstacle);
+        //public void GiveRectangleObstacle(Rectangle _obstacle)
+        //{
+        //    obstacleList.Add(_obstacle);
+        //}
 
-        }
+        //public void DeleteList()
+        //{
+        //    obstacleList.Clear();
+        //}
 
-        public void DeleteList()
-        {
-            obstacleList.Clear();
-        }
         //right en bottom in array steken
-        public void Execute(ITransform transform, Vector2 direction, Rectangle hitBox)
+        public void Execute()
         {
-            foreach (Rectangle obstacle in obstacleList)
-            {
-                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Right)
-                {
-                    direction = Vector2.Zero;
-                    Debug.WriteLine("RECHTS");
-                    Global.hasJumped = true;
-                }
-                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Left)
-                {
-                    direction = Vector2.Zero;
-                    Debug.WriteLine("LINKS");
-                    Global.hasJumped = true;
-                }
-                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Top)
-                {
-                    speed.Y = 0f;
-                    Global.hasJumped = true;
-                }
-                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Bottom)
-                {
-                    speed.Y = 0f;
-                    Global.hasJumped = false;
-                    Debug.WriteLine("BOTTOM");
-                }
-                if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.None)
-                {
-                    Global.hasJumped = true;
-                    Debug.WriteLine("NO COL DEC");
-                }
+            //foreach (Rectangle obstacle in obstacleList)
+            //{
+            //    if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Right)
+            //    {
+            //        direction = Vector2.Zero;
+            //        //Debug.WriteLine("RECHTS");
+            //        //Global.hasJumped = true;
+            //    }
+            //    if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Left)
+            //    {
+            //        direction = Vector2.Zero;
+            //        Debug.WriteLine("LINKS");
+            //        //Global.hasJumped = true;
+            //    }
+            //    if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Top)
+            //    {
+            //        //speed.Y = 0f;
+            //        //Global.hasJumped = false;
+            //    }
+            //    if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.Bottom)
+            //    {
+            //        speed.Y = 0f;
+            //        //Global.hasJumped = false;
+            //        Debug.WriteLine("BOTTOM");
+            //    }
+            //    //else if (Global.colMan.CheckCollision(hitBox, obstacle) == angle.None)
+            //    //{
+            //    //    speed.Y = 1f;
+            //    //    //Global.hasJumped = true;
+            //    //    Debug.WriteLine("NO COL DEC");
+            //    //    //direction.Y += 3f;
+            //    //}
 
-            }
-            
-            direction *= speed;
-            transform.Position += direction;            
+            //}
+
+            character.velocity.X = 5 * character.direction.X;
         }
-
-
     }
 }
