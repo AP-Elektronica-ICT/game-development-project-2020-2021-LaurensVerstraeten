@@ -32,7 +32,7 @@ namespace ShadowGame
             // TODO: Add your initialization logic here
             Global.Content = Content;
             level = new LevelOne();
-            level.CreateWorld(32);
+            level.CreateWorld(25);
 
             base.Initialize();
         }

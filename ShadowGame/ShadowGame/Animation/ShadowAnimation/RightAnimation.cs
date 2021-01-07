@@ -28,7 +28,7 @@ namespace ShadowGame.Animation.ShadowAnimation
         public void draw(SpriteBatch spriteBatch, Vector2 _position)
         {
             this.position = _position;
-            spriteBatch.Draw(this.texture, new Rectangle((int)position.X, (int)position.Y, 55, 55), _animatie.currentFrame.SourceRectangle, Color.White);
+            spriteBatch.Draw(this.texture, new Rectangle((int)position.X, (int)position.Y, 42, 42), _animatie.currentFrame.SourceRectangle, Color.White);
         }
 
         public void update(GameTime gameTime)

@@ -59,8 +59,8 @@ namespace ShadowGame
             //startpositie
             //position = new Vector2(0, 0);
             
-            Hitbox = new Rectangle((int)position.X, (int)position.Y, 55, 55);
-            FutureHitbox = new Rectangle((int)position.X, (int)position.Y, 55, 55);
+            Hitbox = new Rectangle((int)position.X, (int)position.Y, 42, 42);
+            FutureHitbox = new Rectangle((int)position.X, (int)position.Y, 42, 42);
 
             Global.moveCommand.Context(this);
         }
@@ -159,7 +159,5 @@ namespace ShadowGame
         {
             currentAnimation.draw(spriteBatch, position);
         }
-
-
     }
 }
