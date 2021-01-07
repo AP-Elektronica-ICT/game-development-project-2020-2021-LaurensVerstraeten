@@ -69,11 +69,11 @@ namespace ShadowGame
         public void Update(GameTime gameTime)
         {
             direction = inputReader.ReadInput(hasJumped);
-            //float gravityByTime = 
+            float secondsElapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (velocity.Y < 10)
             {
-                velocity.Y += 0.4f;                
+                velocity.Y += 20f * secondsElapsed;                
             }
             
             Move(direction, gameTime);
@@ -102,17 +102,7 @@ namespace ShadowGame
             }
             if (_direction.X == 0)
             {
-                currentAnimation = idle;
-                /*
-                if (directionBefore == "right")
-                {
-                    currentAnimation = Idle;
-                }
-                if (directionBefore == "left")
-                {
-                    currentAnimation = leftIdle;
-                }
-                */
+                currentAnimation = idle;                
             }
 
             Global.moveCommand.Execute();
