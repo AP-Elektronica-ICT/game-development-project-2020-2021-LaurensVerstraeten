@@ -43,6 +43,7 @@ namespace ShadowGame
 
         public Shadow(Texture2D texture, IInputReader reader)
         {
+            //startpositie
             position = new Vector2(0, 610);
             shadowTexture = texture;            
             walk = new WalkAnimation(texture, position);
@@ -53,12 +54,7 @@ namespace ShadowGame
 
             //Read input for my shadow class
             this.inputReader = reader;
-
-            //moveCommand = new MoveCommand();
-
-            //startpositie
-            //position = new Vector2(0, 0);
-            
+                                    
             Hitbox = new Rectangle((int)position.X, (int)position.Y, Global.shadowScale, Global.shadowScale);
             //FutureHitbox = new Rectangle((int)position.X, (int)position.Y, 42, 42);
 
