@@ -27,7 +27,7 @@ namespace ShadowGame.Collision
         public static bool TouchLeftOf(this Rectangle hitBox, Rectangle obstacle)
         {
             return (hitBox.Right <= obstacle.Right &&
-                    hitBox.Right >= obstacle.Left - 5 &&
+                    hitBox.Right >= obstacle.Left - 3 &&
                     hitBox.Top <= obstacle.Bottom - (obstacle.Width / 4) &&
                     hitBox.Bottom >= obstacle.Top + (obstacle.Width / 4));
         }
@@ -35,7 +35,7 @@ namespace ShadowGame.Collision
         public static bool TouchRightOf(this Rectangle hitBox, Rectangle obstacle)
         {
             return (hitBox.Left >= obstacle.Left &&
-                    hitBox.Left <= obstacle.Right + 5 &&
+                    hitBox.Left <= obstacle.Right + 3 &&
                     hitBox.Top <= obstacle.Bottom - (obstacle.Width / 4) &&
                     hitBox.Bottom >= obstacle.Top + (obstacle.Width / 4));
         }

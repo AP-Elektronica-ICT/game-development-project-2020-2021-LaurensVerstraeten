@@ -43,7 +43,7 @@ namespace ShadowGame
 
         public Shadow(Texture2D texture, IInputReader reader)
         {
-            position = new Vector2(50, 0);
+            position = new Vector2(0, 610);
             shadowTexture = texture;            
             walk = new WalkAnimation(texture, position);
             idle = new IdleAnimation(texture, position);
@@ -74,6 +74,13 @@ namespace ShadowGame
             if (velocity.Y < 10)
             {
                 velocity.Y += 20f * secondsElapsed;                
+            }
+
+            if (Global.reset)
+            {
+                position.X = 0;
+                position.Y = 610;
+                Global.reset = false;
             }
             
             Move(direction, gameTime);

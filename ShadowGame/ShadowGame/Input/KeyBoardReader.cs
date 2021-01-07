@@ -26,6 +26,10 @@ namespace ShadowGame.Input
                 direction = new Vector2(0, -7.8f);
                 hasJumped = true;                
             }
+            if (state.IsKeyDown(Keys.R))
+            {
+                Global.reset = true;
+            }
 
             return direction;
         }

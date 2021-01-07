@@ -66,7 +66,7 @@ namespace ShadowGame.Command
 
             //}
 
-            character.velocity.X = 5 * character.direction.X;
+            character.velocity.X = Global.shadowSpeed * character.direction.X;
         }
     }
 }

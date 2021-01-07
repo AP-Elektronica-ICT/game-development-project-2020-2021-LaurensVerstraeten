@@ -16,7 +16,8 @@ namespace ShadowGame
         //public static CollisionManager colMan = new CollisionManager();
         public static int shadowScale = 42;
         public static ContentManager Content;
-
+        public static float shadowSpeed = 3.5f;
+        public static bool reset = false;
         //public static bool hasJumped { get; set; }
     }
 }
