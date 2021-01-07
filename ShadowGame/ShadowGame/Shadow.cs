@@ -20,6 +20,7 @@ namespace ShadowGame
         private Texture2D shadowTexture;
         private Vector2 position;
         public Vector2 velocity;
+        //public bool isFalling = false;
         private Vector2 directionLooking = new Vector2(1, 0);
         public Vector2 direction;
         public Vector2 Position
@@ -29,12 +30,14 @@ namespace ShadowGame
 
         //public Rectangle CollisionRectangle { get; set; }
         private Rectangle Hitbox;
-        public bool hasJumped = false;
+        public bool hasJumped;
 
         IInputReader inputReader;        
         IAnimation currentAnimation;
         IAnimation idle;
         IAnimation walk;
+        IAnimation jump;
+        //IAnimation falling;
         
         //private IGameCommand moveCommand;
 
@@ -44,6 +47,8 @@ namespace ShadowGame
             shadowTexture = texture;            
             walk = new WalkAnimation(texture, position);
             idle = new IdleAnimation(texture, position);
+            jump = new JumpAnimation(texture, position);
+            //falling = new FallingAnimation(texture, position);
             currentAnimation = idle;
 
             //Read input for my shadow class
@@ -68,8 +73,9 @@ namespace ShadowGame
 
             if (velocity.Y < 10)
             {
-                velocity.Y += 0.4f;
+                velocity.Y += 0.4f;                
             }
+            
             Move(direction, gameTime);
             //Debug.WriteLine(velocity);
             position += velocity;
@@ -110,9 +116,14 @@ namespace ShadowGame
             }
 
             Global.moveCommand.Execute();
-
-            if (_direction.Y == -7.8f)
+            
+            if (hasJumped == true)
             {
+                currentAnimation = jump;                
+            }
+            
+            if (_direction.Y == -7.8f)
+            {                
                 Global.jumpCommand.Execute();
             }                      
             
@@ -124,7 +135,7 @@ namespace ShadowGame
             {
                 position.Y = newRectangle.Y - Hitbox.Height;
                 velocity.Y = 0f;
-                hasJumped = false;
+                hasJumped = false;                
             }
 
             if (Hitbox.TouchLeftOf(newRectangle))
