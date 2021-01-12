@@ -19,6 +19,7 @@ namespace ShadowGame
         private Texture2D texture;
         Shadow shadow;
         LevelOne level;
+        LevelTwo levelTwo;
 
         public Game1()
         {
@@ -35,7 +36,9 @@ namespace ShadowGame
             _graphics.ApplyChanges();
             Global.Content = Content;
             level = new LevelOne();
+            levelTwo = new LevelTwo();
             level.CreateWorld(25);
+            levelTwo.CreateWorld(25);
 
             base.Initialize();
         }
@@ -84,8 +87,7 @@ namespace ShadowGame
             // TODO: Add sprites
             _spriteBatch.Draw(textureBackground, new Rectangle(0, 0, 1280, 720), Color.White);
             level.DrawWorld(_spriteBatch);
-            shadow.Draw(_spriteBatch);
-            
+            shadow.Draw(_spriteBatch);            
 
             _spriteBatch.End();
 

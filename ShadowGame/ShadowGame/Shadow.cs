@@ -118,8 +118,7 @@ namespace ShadowGame
             if (_direction.Y == -7.8f)
             {                
                 Global.jumpCommand.Execute();
-            }                      
-            
+            }
         }
 
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
