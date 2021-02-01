@@ -37,6 +37,10 @@ namespace ShadowGame
             Global.Content = Content;
             level = new LevelOne();
             levelTwo = new LevelTwo();
+            if ( Global.levelOneCleared == true)
+            {
+
+            }
             level.CreateWorld(25);
             levelTwo.CreateWorld(25);
 
@@ -72,6 +76,7 @@ namespace ShadowGame
             {
                 shadow.Collision(tile.Rectangle, level.Width, level.Height);
             }
+            
             
             base.Update(gameTime);
         }

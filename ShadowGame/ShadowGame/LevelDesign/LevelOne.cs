@@ -16,9 +16,15 @@ namespace ShadowGame.LevelDesign
         //in level heb je een list/array van uw platforms en hier roep je uw array aan om te draw
         //array roept rectangles aan
         private List<Block> collisionTiles = new List<Block>();
+        private List<Coin> collisionCoins = new List<Coin>();
         public List<Block> CollisionTiles
         {
             get { return collisionTiles; }
+        }
+
+        public List<Coin> CollisionCoins
+        {
+            get { return collisionCoins; }
         }
 
         private int width, height;
@@ -34,7 +40,7 @@ namespace ShadowGame.LevelDesign
         public byte[,] map = new byte[,]
         {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0},
             {0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},            
             {0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0},
@@ -86,12 +92,10 @@ namespace ShadowGame.LevelDesign
                         width = (x + 1) * size;
                         height = (y + 1) * size;
                     }
-                    /*
-                     * if (number == 2)
-                     * {
-                     *    coinTiles.Add(new Coin(new Rectangle(x * size, y * size, size, size)));
-                     * }
-                    */
+                    if (number == 2)
+                    {
+                        collisionCoins.Add(new Coin(new Rectangle(x * size, y * size, size, size)));
+                    }
                 }
 
             }
@@ -102,6 +106,10 @@ namespace ShadowGame.LevelDesign
             foreach (Block tile in collisionTiles)
             {
                 tile.Draw(spriteBatch);
+            }
+            foreach (Coin coin in collisionCoins)
+            {
+                coin.Draw(spriteBatch);
             }
         }
 
