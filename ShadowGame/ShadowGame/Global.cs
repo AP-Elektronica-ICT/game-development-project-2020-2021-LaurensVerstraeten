@@ -18,8 +18,6 @@ namespace ShadowGame
         public static ContentManager Content;
         public static float shadowSpeed = 3.5f;
         public static bool reset = false;
-        public static bool levelOneCleared = false;
-        public static bool levelTwoCleared = false;
         public static bool gameOver = false;
         //public static bool hasJumped { get; set; }
     }

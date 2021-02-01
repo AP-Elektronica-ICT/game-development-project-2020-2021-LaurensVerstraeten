@@ -11,6 +11,7 @@ namespace ShadowGame.World
     {
         protected Texture2D texture;
         private Rectangle rectangle;
+        public bool isCollected = false;
         public Rectangle Rectangle
         {
             get { return rectangle; }
@@ -26,13 +27,21 @@ namespace ShadowGame.World
 
         public Coin(Rectangle newRectangle)
         {
-            texture = Global.Content.Load<Texture2D>("coin");
-            this.Rectangle = newRectangle;
+            if (!isCollected)
+            {
+                texture = Global.Content.Load<Texture2D>("coin");
+                this.Rectangle = newRectangle;
+            }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, rectangle, Color.White);
+            if (!isCollected)
+            {
+                spriteBatch.Draw(texture, rectangle, Color.White);
+            }      
+            
         }
     }
 }

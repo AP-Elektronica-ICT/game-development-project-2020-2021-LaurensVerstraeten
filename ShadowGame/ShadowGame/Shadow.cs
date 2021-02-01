@@ -30,6 +30,11 @@ namespace ShadowGame
 
         //public Rectangle CollisionRectangle { get; set; }
         private Rectangle Hitbox;
+        public Rectangle hitBox 
+        { 
+            get { return Hitbox; } 
+        }
+
         public bool hasJumped;
 
         IInputReader inputReader;        
@@ -144,7 +149,7 @@ namespace ShadowGame
             {
                 velocity.Y = 1f;
             }
-
+                       
             if (position.X < 0) position.X = 0;
             if (position.X > xOffset - Hitbox.Width) position.X = xOffset - Hitbox.Width;
             if (position.Y < 0) velocity.Y = 1f;

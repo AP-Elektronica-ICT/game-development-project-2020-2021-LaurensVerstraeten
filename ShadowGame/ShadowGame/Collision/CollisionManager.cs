@@ -38,6 +38,11 @@ namespace ShadowGame.Collision
                     hitBox.Left <= obstacle.Right + 3 &&
                     hitBox.Top <= obstacle.Bottom - (obstacle.Width / 4) &&
                     hitBox.Bottom >= obstacle.Top + (obstacle.Width / 4));
+        }        
+
+        public static bool TouchCoin(this Rectangle hitBox, Rectangle obstacle)
+        {
+            return (hitBox.Intersects(obstacle));
         }
 
         //private angle angle;
