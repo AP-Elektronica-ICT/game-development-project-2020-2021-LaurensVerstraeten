@@ -42,3 +42,5 @@ C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGamePro
 C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGameProject\game-development-project-2020-2021-LaurensVerstraeten\ShadowGame\ShadowGame\bin\Debug\netcoreapp3.1\Content\ShadowSprite.xnb
 C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGameProject\game-development-project-2020-2021-LaurensVerstraeten\ShadowGame\ShadowGame\bin\Debug\netcoreapp3.1\Content\greenhill.xnb
 C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGameProject\game-development-project-2020-2021-LaurensVerstraeten\ShadowGame\ShadowGame\bin\Debug\netcoreapp3.1\Content\coin.xnb
+C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGameProject\game-development-project-2020-2021-LaurensVerstraeten\ShadowGame\ShadowGame\bin\Debug\netcoreapp3.1\Content\Button.xnb
+C:\Users\Laurens\Desktop\EA-PBA\2EAIOT\1ste semester\GameDevelopment\MonoGameProject\game-development-project-2020-2021-LaurensVerstraeten\ShadowGame\ShadowGame\bin\Debug\netcoreapp3.1\Content\Font.xnb

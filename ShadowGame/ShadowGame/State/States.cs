@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ShadowGame
 {
-    public abstract class GameStates
+    public abstract class States
     {
         protected ContentManager _content;
 
@@ -17,7 +17,7 @@ namespace ShadowGame
 
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
-        public GameStates(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public States(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
             _game = game;
 

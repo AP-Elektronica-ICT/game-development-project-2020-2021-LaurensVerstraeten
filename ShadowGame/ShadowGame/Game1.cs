@@ -6,6 +6,7 @@ using ShadowGame.Collision;
 using ShadowGame.Input;
 using ShadowGame.LevelDesign;
 using ShadowGame.World;
+using ShadowGame.Menu;
 using System;
 using System.Diagnostics;
 
@@ -18,11 +19,18 @@ namespace ShadowGame
         private Texture2D textureBackground;
         private Texture2D texture;
         private int coinsCollected = 0;
+        private States _currentState;
+        private States _nextState;
         Shadow shadow;
         Level levelOne;
         Level levelTwo;
         Level currentLevel;
         
+        public void ChangeState(States state)
+        {
+            _nextState = state;
+        }
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -48,7 +56,7 @@ namespace ShadowGame
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
             textureBackground = Content.Load<Texture2D>("greenhill");
             texture = Content.Load<Texture2D>("ShadowSprite");
 
@@ -65,6 +73,15 @@ namespace ShadowGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+                _nextState = null;
+            }
+            _currentState.Update(gameTime);
+
+            //_currentState.PostUpdate(gameTime);
             
             // TODO: Add your update logic here
             shadow.Update(gameTime);
@@ -108,14 +125,16 @@ namespace ShadowGame
             GraphicsDevice.Clear(Color.BurlyWood);
 
             // TODO: Add your drawing code here
+            
 
             _spriteBatch.Begin();
 
             // TODO: Add sprites
+            _currentState.Draw(gameTime, _spriteBatch);
             _spriteBatch.Draw(textureBackground, new Rectangle(0, 0, 1280, 720), Color.White);
             currentLevel.DrawWorld(_spriteBatch);
             shadow.Draw(_spriteBatch);
-            
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
