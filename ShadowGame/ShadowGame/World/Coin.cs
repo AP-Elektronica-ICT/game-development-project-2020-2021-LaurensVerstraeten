@@ -27,14 +27,17 @@ namespace ShadowGame.World
 
         public Coin(Rectangle newRectangle)
         {
-            if (!isCollected)
-            {
-                texture = Global.Content.Load<Texture2D>("coin");
-                this.Rectangle = newRectangle;
-            }
-            
+            texture = Global.Content.Load<Texture2D>("coin");
+            this.Rectangle = newRectangle;
         }
-
+        
+        public void Update()
+        {
+            if (isCollected)
+            {
+                this.Rectangle = new Rectangle(-100, -100, 0, 0);
+            }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             if (!isCollected)
