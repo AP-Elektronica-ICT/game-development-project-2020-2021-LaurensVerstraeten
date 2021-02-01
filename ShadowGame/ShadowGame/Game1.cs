@@ -44,7 +44,7 @@ namespace ShadowGame
             _graphics.PreferredBackBufferWidth = 1275;
             _graphics.PreferredBackBufferHeight = 700;
             _graphics.ApplyChanges();
-            Global.Content = Content;
+            Global.Content = Content;            
             levelOne = new Level(mapLevelOne);
             currentLevel = levelOne;
             levelTwo = new Level(mapLevelTwo);
@@ -125,12 +125,12 @@ namespace ShadowGame
             GraphicsDevice.Clear(Color.BurlyWood);
 
             // TODO: Add your drawing code here
-            
+            _currentState.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.Begin();
 
             // TODO: Add sprites
-            _currentState.Draw(gameTime, _spriteBatch);
+            
             _spriteBatch.Draw(textureBackground, new Rectangle(0, 0, 1280, 720), Color.White);
             currentLevel.DrawWorld(_spriteBatch);
             shadow.Draw(_spriteBatch);

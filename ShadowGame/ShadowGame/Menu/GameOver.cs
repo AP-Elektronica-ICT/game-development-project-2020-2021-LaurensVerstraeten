@@ -6,5 +6,6 @@ namespace ShadowGame.Menu
 {
     class GameOver
     {
+
     }
 }

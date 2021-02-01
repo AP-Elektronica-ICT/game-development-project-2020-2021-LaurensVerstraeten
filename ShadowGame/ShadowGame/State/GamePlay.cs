@@ -7,9 +7,9 @@ using System.Text;
 
 namespace ShadowGame.State
 {
-    public class GameStates : States
+    public class GamePlay : States
     {
-        public GameStates(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        public GamePlay(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
 
         }

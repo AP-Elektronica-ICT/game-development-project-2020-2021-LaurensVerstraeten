@@ -41,7 +41,7 @@ namespace ShadowGame.Menu
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            _game.ChangeState(new Gamestates(_game, _graphicsDevice,_content)));
+            _game.ChangeState(new GamePlay(_game, _graphicsDevice,_content));
         }
 
         private void quitButton_Click(object sender, EventArgs e)
@@ -51,10 +51,12 @@ namespace ShadowGame.Menu
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin();
             foreach (var component in _components)
             {
                 component.Draw(gameTime, spriteBatch);
-            }          
+            }
+            spriteBatch.End();
         }
 
         public override void PostUpdate(GameTime gameTime)
