@@ -78,7 +78,7 @@ namespace ShadowGame.State
                     {
                         if (currentLevel == levelTwo)
                         {
-                            //victory
+                            _game.ChangeState(new VictoryState(_game, _graphicsDevice, _content));
                         }
                         currentLevel = levelTwo;
                         Global.reset = true;
@@ -89,7 +89,7 @@ namespace ShadowGame.State
 
             if (shadow.Position.Y > Global.screenHeight)
             {
-                _game.ChangeState(new GameOver(_game, _graphicsDevice, _content));
+                _game.ChangeState(new GameOverState(_game, _graphicsDevice, _content));
             }           
             
         }
@@ -153,7 +153,7 @@ namespace ShadowGame.State
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
     }

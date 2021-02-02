@@ -42,6 +42,7 @@ namespace ShadowGame.Menu
             _texture = texture;
 
             _font = font;
+
             PenColor = Color.Black;
         }
 
