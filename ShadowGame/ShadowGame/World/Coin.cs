@@ -25,9 +25,10 @@ namespace ShadowGame.World
             set { content = value; }
         }
 
-        public Coin(Rectangle newRectangle)
+        public Coin(Rectangle newRectangle, ContentManager content)
         {
-            texture = Global.Content.Load<Texture2D>("coin");
+            Content = content;
+            texture = Content.Load<Texture2D>("coin");
             this.Rectangle = newRectangle;
         }
         

@@ -26,8 +26,6 @@ namespace ShadowGame
             _content = content;
         }
 
-        public abstract void PostUpdate(GameTime gameTime);
-
         public abstract void Update(GameTime gameTime);
 
     }

@@ -25,9 +25,10 @@ namespace ShadowGame.World
             set { content = value; }
         }
         
-        public Block(Rectangle newRectangle)
+        public Block(Rectangle newRectangle, ContentManager content)
         {
-            texture = Global.Content.Load<Texture2D>("block");
+            Content = content;
+            texture = Content.Load<Texture2D>("block");
             this.Rectangle = newRectangle;
         }
 

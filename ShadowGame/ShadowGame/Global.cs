@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using ShadowGame.Collision;
 using ShadowGame.Command;
 using System;
@@ -19,6 +21,10 @@ namespace ShadowGame
         public static float shadowSpeed = 3.5f;
         public static bool reset = false;
         public static bool gameOver = false;
+        public static SpriteBatch spriteBatch;
+        public static GraphicsDeviceManager graphicsManager;
+        public static int screenWidth = 1280;
+        public static int screenHeight = 720;
         //public static bool hasJumped { get; set; }
     }
 }

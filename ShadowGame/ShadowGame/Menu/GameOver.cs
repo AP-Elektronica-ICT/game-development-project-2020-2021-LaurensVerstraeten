@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShadowGame.Menu
 {
-    class GameOver
+    class GameOver : States
     {
 
     }

@@ -15,8 +15,9 @@ namespace ShadowGame.LevelDesign
         //platformen zijn een array van tiles
         //in level heb je een list/array van uw platforms en hier roep je uw array aan om te draw
         //array roept rectangles aan
-        private List<Block> collisionTiles = new List<Block>();
-        private List<Coin> collisionCoins = new List<Coin>();
+        public ContentManager _content;
+        private List<Block> collisionTiles;
+        private List<Coin> collisionCoins;
         public List<Block> CollisionTiles
         {
             get { return collisionTiles; }
@@ -38,9 +39,12 @@ namespace ShadowGame.LevelDesign
         }
        
         private byte[,] _map;
-        public Level(byte [,] map)
+        public Level(byte [,] map, ContentManager content)
         {
             _map = map;
+            collisionTiles = new List<Block>();
+            collisionCoins = new List<Coin>();
+            _content = content;
         }
 
         public bool isCleared = false;
@@ -55,14 +59,14 @@ namespace ShadowGame.LevelDesign
                     int number = _map[y, x];
                     if (number == 1)
                     {
-                        collisionTiles.Add(new Block(new Rectangle(x * size, y * size, size, size)));
+                        collisionTiles.Add(new Block(new Rectangle(x * size, y * size, size, size), _content));
 
                         width = (x + 1) * size;
                         height = (y + 1) * size;
                     }
                     if (number == 2)
                     {
-                        collisionCoins.Add(new Coin(new Rectangle(x * size, y * size, size, size)));
+                        collisionCoins.Add(new Coin(new Rectangle(x * size, y * size, size, size), _content));
                     }
                 }
 

@@ -10,14 +10,15 @@ namespace ShadowGame.Menu
 {
     public class MenuState : States
     {
-        private List<Component> _components;
+        private List<Component> _components;             
+
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
             var playButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 200),
+                Position = new Vector2((Global.screenWidth/2) - (177/2), 200),
                 Text = "PLAY",
 
             };
@@ -26,7 +27,7 @@ namespace ShadowGame.Menu
 
             var quitButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 250),
+                Position = new Vector2((Global.screenWidth/2) - (177/2), 350),
                 Text = "QUIT",
             };
 
@@ -51,18 +52,15 @@ namespace ShadowGame.Menu
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            Global.spriteBatch.Begin();
+            Global.spriteBatch.Draw(_content.Load<Texture2D>("greenhill"), new Rectangle(0, 0, Global.screenWidth, Global.screenHeight), Color.White);
             foreach (var component in _components)
             {
                 component.Draw(gameTime, spriteBatch);
             }
-            spriteBatch.End();
+            Global.spriteBatch.End();
         }
-
-        public override void PostUpdate(GameTime gameTime)
-        {
-           //remove sprites
-        }
+              
 
         public override void Update(GameTime gameTime)
         {
