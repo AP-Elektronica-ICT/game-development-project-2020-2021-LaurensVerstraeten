@@ -6,6 +6,9 @@ using ShadowGame.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ShadowGame.Menu;
+using ShadowGame.Collision;
+using System.Diagnostics;
 
 namespace ShadowGame.LevelDesign
 {
@@ -16,8 +19,8 @@ namespace ShadowGame.LevelDesign
         //in level heb je een list/array van uw platforms en hier roep je uw array aan om te draw
         //array roept rectangles aan
         public ContentManager _content;
-        private List<Block> collisionTiles;
-        private List<Coin> collisionCoins;
+        private List<Block> collisionTiles = new List<Block>();
+        private List<Coin> collisionCoins = new List<Coin>();
         public List<Block> CollisionTiles
         {
             get { return collisionTiles; }
@@ -41,14 +44,12 @@ namespace ShadowGame.LevelDesign
         private byte[,] _map;
         public Level(byte [,] map, ContentManager content)
         {
-            _map = map;
-            collisionTiles = new List<Block>();
-            collisionCoins = new List<Coin>();
+            _map = map;            
             _content = content;
         }
 
         public bool isCleared = false;
-               
+        private int coinsCollected;
 
         public void CreateWorld(int size)
         {
@@ -82,6 +83,30 @@ namespace ShadowGame.LevelDesign
             foreach (Coin coin in collisionCoins)
             {
                 coin.Draw(spriteBatch);
+            }
+        }
+
+        public void Update(Shadow shadow)
+        {
+            foreach (Block tile in CollisionTiles)
+            {
+                shadow.Collision(tile.Rectangle, Width, Height);
+            }
+           
+            for (int i = 0; i < CollisionCoins.Count; i++)
+            {
+                if (CollisionManager.TouchCoin(shadow.hitBox, CollisionCoins[i].Rectangle))
+                {
+                    CollisionCoins[i].isCollected = true;
+                    CollisionCoins[i].Update();
+                    coinsCollected++;
+
+                    if (coinsCollected == CollisionCoins.Count)
+                    {
+                        Global.currentLevel++;
+                        Global.reset = true;                      
+                    }
+                }
             }
         }
 

@@ -39,6 +39,7 @@ namespace ShadowGame.Menu
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Global.spriteBatch.Begin();
+            Global.spriteBatch.Draw(_content.Load<Texture2D>("death screen"), new Rectangle(0, 0, Global.screenWidth, Global.screenHeight), Color.White);
             foreach (var component in _components)
             {
                 component.Draw(gameTime, spriteBatch);

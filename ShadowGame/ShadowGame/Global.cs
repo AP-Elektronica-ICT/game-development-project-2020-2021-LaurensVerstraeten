@@ -25,6 +25,7 @@ namespace ShadowGame
         public static GraphicsDeviceManager graphicsManager;
         public static int screenWidth = 1280;
         public static int screenHeight = 720;
+        public static int currentLevel = 0;
         //public static bool hasJumped { get; set; }
     }
 }

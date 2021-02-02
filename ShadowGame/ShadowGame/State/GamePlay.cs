@@ -9,14 +9,14 @@ using ShadowGame.Input;
 using ShadowGame.World;
 using ShadowGame.Collision;
 using ShadowGame.Menu;
+using System.Diagnostics;
 
 namespace ShadowGame.State
 {
     public class GamePlay : States
     {              
         private Texture2D textureBackground;
-        private Texture2D texture;
-        private int coinsCollected = 0;
+        private Texture2D texture;       
         
         Shadow shadow;
         Level levelOne;
@@ -41,7 +41,7 @@ namespace ShadowGame.State
         {
             shadow = new Shadow(texture, new KeyBoardReader());
         }
-
+                
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Global.spriteBatch.Begin();
@@ -60,36 +60,26 @@ namespace ShadowGame.State
             shadow.Update(gameTime);
 
             //world classe maken
-            foreach (Block tile in currentLevel.CollisionTiles)
+            currentLevel.Update(shadow);
+            Debug.WriteLine(currentLevel.CollisionCoins.Count);
+
+            if (Global.currentLevel == 1)
             {
-                shadow.Collision(tile.Rectangle, currentLevel.Width, currentLevel.Height);
-            }
-
-            foreach (Coin coin in currentLevel.CollisionCoins)
+                currentLevel = levelTwo;
+                currentLevel.CreateWorld(25);
+            }         
+            else if (Global.currentLevel == 2)
             {
-                if (CollisionManager.TouchCoin(shadow.hitBox, coin.Rectangle))
-                {
-
-                    coin.isCollected = true;
-                    coin.Update();
-                    coinsCollected++;
-
-                    if (coinsCollected == currentLevel.CollisionCoins.Count)
-                    {
-                        if (currentLevel == levelTwo)
-                        {
-                            _game.ChangeState(new VictoryState(_game, _graphicsDevice, _content));
-                        }
-                        currentLevel = levelTwo;
-                        Global.reset = true;
-                        currentLevel.CreateWorld(25);
-                    }
-                }
+                _game.ChangeState(new VictoryState(_game, _graphicsDevice, _content));
+                currentLevel = levelOne;
+                Global.currentLevel = 0;
             }
 
             if (shadow.Position.Y > Global.screenHeight)
             {
                 _game.ChangeState(new GameOverState(_game, _graphicsDevice, _content));
+                currentLevel = levelOne;
+                Global.currentLevel = 0;
             }           
             
         }
@@ -98,19 +88,19 @@ namespace ShadowGame.State
         public byte[,] mapLevelOne = new byte[,]
         {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
             {0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0},
             {0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0},
-            {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0},
+            {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
