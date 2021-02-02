@@ -16,6 +16,7 @@ namespace ShadowGame.Menu
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
+
             var playButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2((Global.screenWidth/2) - (177/2), 200),
